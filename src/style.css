@@ -26,13 +26,39 @@
 	}
 }
 
+@layer components {
+	.btn-primary {
+		/* Add explicit hover text/bg colors here to ensure they "win" the cascade */
+		@apply bg-brand-primary text-white font-bold px-12 py-5 rounded-full text-lg 
+               transition-all duration-300 shadow-lg 
+               hover:scale-105 hover:bg-brand-primary/90 hover:shadow-xl;
+	}
+
+	.btn-secondary {
+		/* Your secondary button needs a hover background change to be visible */
+		@apply bg-white text-brand-primary border-2 border-brand-primary font-bold px-12 py-5 rounded-full text-lg 
+               transition-all duration-300 shadow-lg 
+               hover:scale-105 hover:bg-brand-primary hover:text-white;
+	}
+}
+
 .logo {
 	height: 15em;
 }
 
 #app {
-	/* Subtracts the estimated header (~73px) and footer (~240px) */
-	min-height: calc(100vh - 287px);
+	flex: 1; /* This expands to fill the space between nav and footer */
 	display: flex;
 	flex-direction: column;
+}
+
+#contact {
+	display: block;
+	width: 100%;
+	min-height: 500px; /* This gives the map container a physical "body" */
+}
+
+#map {
+	width: 100%;
+	height: 100%;
 }

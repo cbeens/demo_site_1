@@ -8,7 +8,7 @@
 			href="/src/assets/cbeens_dougg_icon.svg"
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Service Company | cbeens.dev</title>
+		<title>Landing Page | cbeens.dev</title>
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,10 +16,18 @@
 			href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;700&family=IBM+Plex+Mono:wght@700&family=Space+Grotesk:wght@300;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700&display=swap"
 			rel="stylesheet"
 		/>
+
+		<link
+			href="https://api.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
-		<div id="nav"></div>
-		<div id="app"></div>
+		<div id="nav" class="sticky top-0 z-50"></div>
+		<div id="app">
+			<div id="hero"></div>
+			<div id="contact"></div>
+		</div>
 		<div id="footer"></div>
 		<script type="module" src="/src/main.js"></script>
 	</body>
