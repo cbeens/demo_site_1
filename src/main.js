@@ -1,55 +1,27 @@
 import "./style.css";
-import { loadComponent } from "./componentLoader";
-
-import mapboxgl from "mapbox-gl";
-
-mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+import { loadComponent } from "./utils/componentLoader";
+import { initializeMap } from "./utils/map";
 
 window.addEventListener("DOMContentLoaded", async () => {
-	// 1. Load the Nav and Footer (The Frame)
-	await loadComponent("nav", "/src/components/nav.html");
-	await loadComponent("footer", "/src/components/footer.html");
+	// 1. Load the Frame & Core Content
+	// Use Promise.all to load parallel components faster
+	await Promise.all([
+		loadComponent("nav", "./src/components/nav.html"),
+		loadComponent("footer", "./src/components/footer.html"),
+		loadComponent("hero", "./src/components/hero.html"),
+		loadComponent("services", "./src/components/services.html"),
+		loadComponent("testimonial", "./src/components/testimonial.html"),
+		loadComponent("contact", "./src/components/contact.html"),
+	]);
 
-	// 2. Load the Page Content (The Core)
-	await loadComponent("hero", "/src/components/hero.html");
-	await loadComponent("services", "/src/components/services.html");
-	await loadComponent("testimonial", "/src/components/testimonial.html");
-	await loadComponent("contact", "/src/components/contact.html");
-
+	// 2. Performance Metric
 	const [entry] = performance.getEntriesByType("navigation");
-	if (entry) {
-		// Calculate total load time (rounded)
-		const loadTime = Math.round(entry.duration);
-		document.getElementById("load-time-display").innerText =
-			`${loadTime}ms`;
+	const display = document.getElementById("load-time-display");
+	if (entry && display) {
+		display.innerText = `${Math.round(entry.duration)}ms`;
 	}
 
-	// 3. Trigger Mapbox ONLY after 'contact' is fully loaded
-	const mapContainer = document.getElementById("map");
-	if (mapContainer) {
-		const map = new mapboxgl.Map({
-			container: "map",
-			style: "mapbox://styles/mapbox/light-v11",
-			center: [-97.7431, 30.2672],
-			zoom: 12,
-			scrollZoom: false,
-		});
-
-		// 1. Create a DOM element for the custom icon
-		const el = document.createElement("div");
-		el.className = "marker";
-		el.style.backgroundImage = "url(/src/assets/cbeens_dougg_icon.svg)";
-		el.style.width = "40px";
-		el.style.height = "40px";
-		el.style.backgroundSize = "100%";
-
-		// 2. Add the custom marker to the map
-		new mapboxgl.Marker(el).setLngLat([-97.7431, 30.2672]).addTo(map);
-
-		map.on("load", () => map.resize());
-	}
-});
-
-window.addEventListener("load", () => {
-	// Use the Performance Navigation Timing API
+	// 3. Initialize Map after contact component is injected
+	const token = import.meta.env.VITE_MAPBOX_TOKEN;
+	initializeMap(token);
 });

@@ -1,5 +1,7 @@
 @import "tailwindcss";
+@custom-variant hover (&:hover); /* This makes hover work on touchscreen devices */
 
+/* Theme */
 @theme {
 	/* Brand Colors */
 	--color-brand-primary: #7844b3;
