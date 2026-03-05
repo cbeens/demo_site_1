@@ -1,9 +1,9 @@
 import "./style.css";
 import { loadComponent } from "./componentLoader";
+
 import mapboxgl from "mapbox-gl";
 
-mapboxgl.accessToken =
-	"pk.eyJ1IjoiY2JlZW5zZGV2IiwiYSI6ImNtbWNkeTJuNDAxamUzMXB1amplbWxnZDUifQ.Ksl4fTJzzoBbarz6zN9Pgg";
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
 window.addEventListener("DOMContentLoaded", async () => {
 	// 1. Load the Nav and Footer (The Frame)
@@ -12,7 +12,17 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 	// 2. Load the Page Content (The Core)
 	await loadComponent("hero", "/src/components/hero.html");
+	await loadComponent("services", "/src/components/services.html");
+	await loadComponent("testimonial", "/src/components/testimonial.html");
 	await loadComponent("contact", "/src/components/contact.html");
+
+	const [entry] = performance.getEntriesByType("navigation");
+	if (entry) {
+		// Calculate total load time (rounded)
+		const loadTime = Math.round(entry.duration);
+		document.getElementById("load-time-display").innerText =
+			`${loadTime}ms`;
+	}
 
 	// 3. Trigger Mapbox ONLY after 'contact' is fully loaded
 	const mapContainer = document.getElementById("map");
@@ -38,4 +48,8 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 		map.on("load", () => map.resize());
 	}
+});
+
+window.addEventListener("load", () => {
+	// Use the Performance Navigation Timing API
 });
