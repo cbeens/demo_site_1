@@ -79,6 +79,10 @@
 		width: 40px;
 		stroke-width: 1.5;
 	}
+
+	.highlight-icon {
+		@apply text-gray-400 hover:text-brand-primary transition-all hover:scale-110;
+	}
 }
 
 .logo {
