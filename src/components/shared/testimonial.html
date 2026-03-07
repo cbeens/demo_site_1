@@ -15,11 +15,10 @@
 					href="https://cloudflare.com"
 					target="_blank"
 					rel="noreferrer"
-					class="flex flex-col items-center gap-2 group"
+					class="brand-link group"
 				>
 					<svg
-						id="logo-cloudflare"
-						class="h-8 w-auto text-[#F38020]"
+						class="service-icon text-[#F38020]"
 						role="img"
 						viewBox="0 0 24 24"
 						fill="currentColor"
@@ -40,11 +39,10 @@
 					href="https://github.com"
 					target="_blank"
 					rel="noreferrer"
-					class="flex flex-col items-center gap-2 group"
+					class="brand-link group"
 				>
 					<svg
-						id="logo-github"
-						class="h-8 w-auto text-white"
+						class="service-icon text-white"
 						role="img"
 						viewBox="0 0 24 24"
 						fill="currentColor"
@@ -65,11 +63,10 @@
 					href="https://www.docker.com/"
 					target="_blank"
 					rel="noreferrer"
-					class="flex flex-col items-center gap-2 group"
+					class="brand-link group"
 				>
 					<svg
-						id="logo-docker"
-						class="h-8 w-auto text-[#2496ED]"
+						class="service-icon text-[#2496ED]"
 						role="img"
 						viewBox="0 0 24 24"
 						fill="currentColor"
@@ -85,12 +82,36 @@
 						>Docker</span
 					>
 				</a>
+
+				<a
+					href="https://digitalocean.com"
+					target="_blank"
+					rel="noreferrer"
+					class="brand-link group"
+				>
+					<svg
+						role="img"
+						class="service-icon text-[#0080FF]"
+						fill="currentColor"
+						viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<title>DigitalOcean</title>
+						<path
+							d="M12.04 0C5.408-.02.005 5.37.005 11.992h4.638c0-4.923 4.882-8.731 10.064-6.855a6.95 6.95 0 014.147 4.148c1.889 5.177-1.924 10.055-6.84 10.064v-4.61H7.391v4.623h4.61V24c7.86 0 13.967-7.588 11.397-15.83-1.115-3.59-3.985-6.446-7.575-7.575A12.8 12.8 0 0012.039 0zM7.39 19.362H3.828v3.564H7.39zm-3.563 0v-2.978H.85v2.978z"
+						/>
+					</svg>
+					<span
+						class="text-[9px] font-mono uppercase tracking-widest text-gray-500"
+						>DigitalOcean</span
+					>
+				</a>
 			</div>
 		</div>
 
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 			<div
-				class="flex flex-col gap-6 border-l-2 border-brand-secondary pl-8"
+				class="flex flex-col gap-6 border-l-2 border-brand-secondary pl-8 hover:bg-white/15 transition-colors"
 			>
 				<p
 					class="text-2xl md:text-3xl font-body italic leading-relaxed"
@@ -111,7 +132,7 @@
 
 			<div class="grid grid-cols-2 gap-4">
 				<div
-					class="border border-white/10 p-8 flex flex-col items-center justify-center gap-2"
+					class="border border-white/10 p-8 flex flex-col items-center justify-center gap-2 hover:bg-white/15 transition-colors"
 				>
 					<span
 						class="text-4xl font-heading font-bold text-brand-secondary"
@@ -123,7 +144,7 @@
 					>
 				</div>
 				<div
-					class="border border-white/10 p-8 flex flex-col items-center justify-center gap-2"
+					class="border border-white/10 p-8 flex flex-col items-center justify-center gap-2 hover:bg-white/15 transition-colors"
 				>
 					<span
 						id="load-time-display"

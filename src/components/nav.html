@@ -1,85 +1,63 @@
 <nav
-	class="w-full bg-black text-white border-b border-black flex items-center justify-between px-8 py-4"
+	class="w-full bg-black text-white flex items-center justify-between px-8 py-4"
 >
 	<a href="/" class="shrink-0">
 		<img
 			src="/src/assets/cbeens_logo_h.svg"
 			alt="cbeens.dev Logo"
-			class="h-8 -ml-4"
+			class="h-8 -ml-4 hover:scale-110 transition-transform"
 		/>
 	</a>
 
 	<div class="flex items-center gap-6">
-		<div class="hidden lg:flex gap-8 font-bold border-r border-black pr-6">
-			<a href="/" class="hover:text-brand-primary">Home</a>
-			<a href="/about" class="hover:text-brand-primary">About</a>
-			<a href="/services" class="hover:text-brand-primary">Services</a>
-		</div>
-
-		<div class="hidden md:flex items-center gap-4">
-			<a
-				href="tel:+15120000000"
-				class="text-white bg-brand-primary hover:scale-110 transition-transform rounded-full p-3"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="lucide lucide-phone"
-				>
-					<path
-						d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
-					/>
-				</svg>
-			</a>
-			<a
-				href="mailto:info@cbeens.dev"
-				class="bg-white text-brand-primary hover:scale-110 transition-transform rounded-full border-2 border-brand-primary p-3"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="lucide lucide-mail"
-				>
-					<path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
-					<rect x="2" y="4" width="20" height="16" rx="2" />
-				</svg>
-			</a>
+		<div
+			class="hidden lg:flex gap-8 font-header font-bold border-r border-white/20 pr-6"
+		>
+			<a href="/" class="nav-link">Home</a>
+			<a href="/about" class="nav-link">About</a>
+			<a href="/services" class="nav-link">Services</a>
 		</div>
 
 		<button
 			id="mobile-menu-toggle"
-			class="lg:hidden cursor-pointer hover:text-brand-primary transition-colors"
+			class="lg:hidden cursor-pointer nav-link p-2"
 		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="28"
-				height="28"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				class="lucide lucide-menu"
-			>
-				<path d="M4 5h16" />
-				<path d="M4 12h16" />
-				<path d="M4 19h16" />
-			</svg>
+			<i data-lucide="menu"></i>
 		</button>
+
+		<div class="hidden md:flex items-center gap-4">
+			<a href="tel:+15120000000" class="btn-primary-icon">
+				<i data-lucide="phone" class="nav-icon"></i>
+			</a>
+			<a href="mailto:info@cbeens.dev" class="btn-secondary-icon">
+				<i data-lucide="mail" class="nav-icon"></i>
+			</a>
+		</div>
+	</div>
+
+	<div
+		id="mobile-drawer"
+		class="fixed inset-0 top-21 bg-white z-40 translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
+	>
+		<div class="flex flex-col p-8 gap-2">
+			<a href="/" class="drawer-link">Home</a>
+			<a href="/about" class="drawer-link">About</a>
+			<a href="/services" class="drawer-link">Services</a>
+
+			<div class="flex flex-col gap-4 mt-8 md:hidden">
+				<a
+					href="tel:+15120000000"
+					class="btn-primary flex items-center justify-center gap-3"
+				>
+					<i data-lucide="phone"></i> Call Now
+				</a>
+				<a
+					href="mailto:info@cbeens.dev"
+					class="btn-secondary flex items-center justify-center gap-3"
+				>
+					<i data-lucide="mail"></i> Email Us
+				</a>
+			</div>
+		</div>
 	</div>
 </nav>
