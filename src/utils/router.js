@@ -24,7 +24,7 @@ export async function router() {
 			),
 			loadComponent(
 				"testimonial",
-				"./src/components/shared/testimonial.html",
+				"./src/components/home/testimonial.html",
 			),
 		]);
 	} else if (path === "/about") {
@@ -33,9 +33,22 @@ export async function router() {
 		await loadComponent("mission", "./src/components/about/mission.html");
 	} else if (path === "/services") {
 		await loadComponent(
-			"service-grid",
-			"./src/components/shared/service_grid.html",
+			"highlights",
+			"./src/components/services/highlights.html",
 		);
+		await loadComponent(
+			"services",
+			"./src/components/services/services.html",
+		);
+		await loadComponent(
+			"comparisons",
+			"./src/components/services/comparisons.html",
+		);
+		await loadComponent(
+			"process",
+			"./src/components/services/process.html",
+		);
+		await loadComponent("service-list", "./src/components/services/service_list.html");
 	}
 
 	await loadComponent("contact", "./src/components/shared/contact.html");
