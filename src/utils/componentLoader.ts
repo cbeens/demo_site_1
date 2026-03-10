@@ -1,4 +1,4 @@
-export async function loadComponent(id, path) {
+export async function loadComponent(id: string, path: string): Promise<void> {
 	const element = document.getElementById(id);
 	if (element) {
 		try {

@@ -21,6 +21,6 @@ export function setupMobileMenu() {
 
 		// FORCE re-render for only this specific icon
 		// This is more efficient than scanning the whole page
-		lucide.createIcons();
+		window.lucide?.createIcons();
 	});
 }

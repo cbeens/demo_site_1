@@ -1,6 +1,10 @@
 import mapboxgl from "mapbox-gl";
 
-export function initializeMap(token, lng = -97.7431, lat = 30.2672) {
+export function initializeMap(
+	token: string,
+	lng = -97.7431,
+	lat = 30.2672,
+): mapboxgl.Map | void {
 	const mapContainer = document.getElementById("map");
 	if (!mapContainer) return;
 

@@ -10,10 +10,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 		loadComponent("footer", "./src/components/footer.html"),
 	]);
 
-	// 2. Start the Router
-	// This will look at the URL and inject home.html into #app
 	initRouter();
-
-	// 3. Global UI Logic
 	setupMobileMenu();
 });

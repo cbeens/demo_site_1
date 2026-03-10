@@ -1,15 +1,21 @@
+/**
+ * The Sovereign SPA Router.
+ * Orchestrates tiered component injection and performance telemetry.
+ * @module Router
+ */
+
 import { loadComponent } from "./componentLoader";
 import { initializeMap } from "./map";
 
-const routes = {
+const routes: { [key: string]: string } = {
 	"/": "./src/pages/home.html",
 	"/about": "./src/pages/about.html",
 	"/services": "./src/pages/services.html",
 };
 
 export async function router() {
-	const path = window.location.pathname;
-	const route = routes[path] || routes["/"];
+	const path: string = window.location.pathname;
+	const route: string = routes[path] || routes["/"];
 
 	// 1. Load the "Parent" Page first (home.html)
 	await loadComponent("app", route);
@@ -48,7 +54,10 @@ export async function router() {
 			"process",
 			"./src/components/services/process.html",
 		);
-		await loadComponent("service-list", "./src/components/services/service_list.html");
+		await loadComponent(
+			"service-list",
+			"./src/components/services/service_list.html",
+		);
 	}
 
 	await loadComponent("contact", "./src/components/shared/contact.html");
@@ -63,10 +72,7 @@ export async function router() {
 		display.innerText = `${Math.round(entry.duration)}ms`;
 	}
 
-	// 4. Final Polish
-	if (window.lucide) {
-		window.lucide.createIcons();
-	}
+	window.lucide?.createIcons();
 	window.scrollTo(0, 0);
 }
 
@@ -74,7 +80,7 @@ export function initRouter() {
 	window.addEventListener("popstate", router);
 
 	document.addEventListener("click", (e) => {
-		const anchor = e.target.closest("a");
+		const anchor = (e.target as HTMLElement)?.closest("a");
 		if (anchor && anchor.href.startsWith(window.location.origin)) {
 			e.preventDefault();
 			window.history.pushState({}, "", anchor.href);
