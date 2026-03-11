@@ -13,7 +13,7 @@ const routes: { [key: string]: string } = {
 	"/services": "./src/pages/services.html",
 };
 
-export async function router() {
+export async function router(): Promise<void> {
 	const path: string = window.location.pathname;
 	const route: string = routes[path] || routes["/"];
 
@@ -76,7 +76,7 @@ export async function router() {
 	window.scrollTo(0, 0);
 }
 
-export function initRouter() {
+export function initRouter(): void {
 	window.addEventListener("popstate", router);
 
 	document.addEventListener("click", (e) => {
