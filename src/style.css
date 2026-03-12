@@ -44,7 +44,7 @@
 	}
 
 	.btn-secondary-icon {
-		@apply text-brand-primary bg-white hover:scale-105 hover:bg-brand-primary/90 hover:text-white border-2 border-transparent transition-transform rounded-full p-3;
+		@apply text-brand-primary border-brand-primary bg-white hover:scale-105 hover:bg-brand-primary/90 hover:text-white border-2 hover:border-transparent transition-transform rounded-full p-3;
 	}
 
 	.nav-link {
@@ -95,7 +95,7 @@
 	flex-direction: column;
 }
 
-#contact {
+#location {
 	display: block;
 	width: 100%;
 	min-height: 500px; /* This gives the map container a physical "body" */

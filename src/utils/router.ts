@@ -61,6 +61,7 @@ export async function router(): Promise<void> {
 	}
 
 	await loadComponent("contact", "./src/components/shared/contact.html");
+	await loadComponent("location", "./src/components/shared/location.html");
 
 	// 3. Initialize Map & Metrics AFTER sub-components are in
 	const token = import.meta.env.VITE_MAPBOX_TOKEN;
