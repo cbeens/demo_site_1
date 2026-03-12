@@ -1,6 +1,7 @@
 import "./style.css";
 
-import { FormHandler, scrollToForm } from "./utils/forms";
+import { FormHandler } from "./utils/forms";
+import { scrollToForm, initBackToTop } from "./utils/interactions";
 import { loadComponent } from "./utils/componentLoader";
 import { initRouter } from "./utils/router";
 import { setupMobileMenu } from "./utils/mobileMenu";
@@ -17,21 +18,22 @@ window.addEventListener("DOMContentLoaded", async () => {
 		new FormHandler("contact-form", "http://localhost:3000/v1/leads");
 	}
 
-	// 3. Select all mailto links that should trigger the scroll instead of opening an app
-	const emailButtons = document.querySelectorAll(
-		'a[href^="mailto:info@cbeens.dev"]',
-	);
+	// 3. Catch EVERY link that mentions your email and redirect it to the scroll
+	document.addEventListener("click", (e) => {
+		const target = e.target as HTMLElement;
+		const anchor = target.closest("a"); // Catch clicks on icons inside the link too
 
-	emailButtons.forEach((btn) => {
-		btn.addEventListener("click", (e) => {
-			// Only scroll if the contact form exists on the current page
-			if (document.querySelector("#contact-form")) {
+		if (
+			anchor &&
+			anchor.getAttribute("href") === "mailto:info@cbeens.dev"
+		) {
+			if (document.querySelector("#contact")) {
 				scrollToForm(e);
 			}
-			// Otherwise, let the default mailto: behavior happen (e.g. on a subpage)
-		});
+		}
 	});
 
 	initRouter();
 	setupMobileMenu();
+	initBackToTop();
 });

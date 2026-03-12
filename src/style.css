@@ -109,3 +109,7 @@
 #hero {
 	height: calc(100vh - 4rem); /* Full viewport height minus nav height */
 }
+
+html {
+	scroll-behavior: smooth;
+}

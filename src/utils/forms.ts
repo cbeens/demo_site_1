@@ -64,26 +64,3 @@ export class FormHandler {
 		}
 	}
 }
-
-/**
- * Smoothly scrolls the viewport to the contact section.
- * Targeted by class or ID to ensure it works across different page layouts.
- */
-export const scrollToForm = (e?: Event) => {
-	if (e) e.preventDefault();
-
-	// We target the form's ID, but scroll to its parent section for better framing
-	const target = document.querySelector("#contact");
-
-	if (target) {
-		// Use scrollIntoView for the simplest "Lightning Fast" implementation
-		target.scrollIntoView({
-			behavior: "smooth",
-			block: "start",
-		});
-	} else {
-		console.warn(
-			"Sovereign Engine: Contact form not found in current DOM.",
-		);
-	}
-};
