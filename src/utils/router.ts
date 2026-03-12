@@ -34,34 +34,38 @@ export async function router(): Promise<void> {
 			),
 		]);
 	} else if (path === "/about") {
-		await loadComponent("team", "./src/components/about/team.html");
-		await loadComponent("history", "./src/components/about/history.html");
-		await loadComponent("mission", "./src/components/about/mission.html");
+		await Promise.all([
+			loadComponent("team", "./src/components/about/team.html"),
+			loadComponent("history", "./src/components/about/history.html"),
+			loadComponent("mission", "./src/components/about/mission.html"),
+		]);
 	} else if (path === "/services") {
-		await loadComponent(
-			"highlights",
-			"./src/components/services/highlights.html",
-		);
-		await loadComponent(
-			"services",
-			"./src/components/services/services.html",
-		);
-		await loadComponent(
-			"comparisons",
-			"./src/components/services/comparisons.html",
-		);
-		await loadComponent(
-			"process",
-			"./src/components/services/process.html",
-		);
-		await loadComponent(
-			"service-list",
-			"./src/components/services/service_list.html",
-		);
+		await Promise.all([
+			loadComponent(
+				"services",
+				"./src/components/services/services.html",
+			),
+			loadComponent(
+				"comparisons",
+				"./src/components/services/comparisons.html",
+			),
+			loadComponent("process", "./src/components/services/process.html"),
+			loadComponent(
+				"service-list",
+				"./src/components/services/service_list.html",
+			),
+			loadComponent(
+				"highlights",
+				"./src/components/services/highlights.html",
+			),
+		]);
 	}
 
-	await loadComponent("contact", "./src/components/shared/contact.html");
-	await loadComponent("location", "./src/components/shared/location.html");
+	// Load shared components (Contact & Location) for all pages
+	await Promise.all([
+		loadComponent("contact", "./src/components/shared/contact.html"),
+		loadComponent("location", "./src/components/shared/location.html"),
+	]);
 
 	// 3. Initialize Map & Metrics AFTER sub-components are in
 	const token = import.meta.env.VITE_MAPBOX_TOKEN;
