@@ -16,6 +16,16 @@ export class FormHandler {
 			e.preventDefault();
 			await this.handleSubmit();
 		});
+
+		const phoneInput = this.formElement?.querySelector(
+			'input[name="phone"]',
+		) as HTMLInputElement;
+		if (phoneInput) {
+			addEventListener("input", (e) => {
+				const target = e.target as HTMLInputElement;
+				target.value = formatPhoneNumber(target.value);
+			});
+		}
 	}
 
 	// Inside your FormHandler Class
@@ -26,7 +36,8 @@ export class FormHandler {
 		// 1. Get the Client ID from the form's data attribute (The Sovereign Way)
 		const clientId =
 			this.formElement.getAttribute("data-client-id") ||
-			"cbeens-dev-test";
+			import.meta.env.VITE_CLIENT_ID ||
+			"cbeens-dev";
 
 		this.setLoading(true);
 
@@ -79,3 +90,14 @@ export class FormHandler {
 		}
 	}
 }
+
+const formatPhoneNumber = (value: string) => {
+	if (!value) return value;
+	const phoneNumber = value.replace(/[^\d]/g, "");
+	const phoneNumberLength = phoneNumber.length;
+	if (phoneNumberLength < 4) return phoneNumber;
+	if (phoneNumberLength < 7) {
+		return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+	}
+	return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+};

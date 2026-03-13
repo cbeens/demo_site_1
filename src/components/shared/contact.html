@@ -1,12 +1,10 @@
-<section class="w-full bg-gray-100 text-black py-20 px-8 border-t border-black">
+<section class="w-full bg-gray-100 text-black py-12 px-8 border-t border-black">
 	<div class="max-w-7xl mx-auto flex flex-col gap-12">
 		<div class="flex flex-col items-start text-center gap-4">
-			<h2 class="text-3xl md:text-5xl font-heading font-bold uppercase">
+			<h2 class="text-3xl md:text-5xl font-bold uppercase">
 				Let's Get <span class="text-brand-primary italic">Started</span>
 			</h2>
-			<p
-				class="text-gray-600 font-mono text-xs tracking-widest uppercase"
-			>
+			<p class="text-gray-600 text-xs tracking-widest uppercase">
 				How can
 				<span class="text-brand-primary font-bold">cbeens.dev</span>
 				supercharge your next project?
@@ -18,13 +16,13 @@
 			class="grid grid-cols-1 lg:grid-cols-2 border-2 border-black overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
 		>
 			<div
-				class="p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-black flex flex-col gap-8"
+				class="p-6 md:p-8 border-b lg:border-b-0 lg:border-r border-black flex flex-col gap-8"
 			>
 				<div class="flex flex-col gap-2">
 					<h3 class="text-2xl font-bold uppercase tracking-tighter">
 						What can we do for you?
 					</h3>
-					<p class="font-body text-gray-600 text-sm">
+					<p class="text-gray-600 text-sm">
 						We don't just build websites, we build digital
 						infrastructure.
 					</p>
@@ -35,7 +33,7 @@
 						class="group border-b border-black/10 py-4 cursor-pointer"
 					>
 						<summary
-							class="flex justify-between items-center list-none font-bold font-heading uppercase text-sm tracking-widest"
+							class="flex justify-between items-center list-none font-bold uppercase text-sm tracking-widest"
 						>
 							<span>Lightning Fast Performance</span>
 							<span
@@ -43,9 +41,7 @@
 								><i data-lucide="plus" class="footer-icon"></i
 							></span>
 						</summary>
-						<p
-							class="mt-4 text-sm text-gray-500 font-body leading-relaxed"
-						>
+						<p class="mt-4 text-sm text-gray-500 leading-relaxed">
 							We guarantee up to 99.99% uptime with a global CDN
 							and enterprise-grade security. That's on top of the
 							fastest website load-times in the industry.
@@ -64,9 +60,7 @@
 								><i data-lucide="plus" class="footer-icon"></i
 							></span>
 						</summary>
-						<p
-							class="mt-4 text-sm text-gray-500 font-body leading-relaxed"
-						>
+						<p class="mt-4 text-sm text-gray-500 leading-relaxed">
 							We create intuitive, user-friendly interfaces that
 							engage your audience and drive conversions. Our
 							designs are not only visually stunning but also
@@ -86,9 +80,7 @@
 								><i data-lucide="plus" class="footer-icon"></i
 							></span>
 						</summary>
-						<p
-							class="mt-4 text-sm text-gray-500 font-body leading-relaxed"
-						>
+						<p class="mt-4 text-sm text-gray-500 leading-relaxed">
 							Custom-built solutions with a personal touch. We
 							work closely with your team to understand your
 							unique needs and deliver a product that exceeds your
@@ -98,7 +90,7 @@
 				</div>
 
 				<div class="flex flex-col gap-2">
-					<p class="font-body text-gray-600 text-sm">
+					<p class="text-gray-600 text-sm">
 						For more information or to discuss your next project,
 						contact us today!
 					</p>
@@ -108,7 +100,11 @@
 			<div
 				class="p-8 md:p-12 lg:p-16 bg-gray-50 flex flex-col justify-center"
 			>
-				<form id="contact-form" class="flex flex-col gap-6">
+				<form
+					id="contact-form"
+					data-client-id="cbeens-dev"
+					class="flex flex-col gap-6"
+				>
 					<div
 						class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6"
 					>
@@ -122,7 +118,7 @@
 								name="name"
 								required
 								placeholder="Full Name"
-								class="border-b border-black bg-transparent p-2 font-body text-sm focus:border-brand-primary focus:outline-none"
+								class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none"
 							/>
 						</div>
 
@@ -136,7 +132,7 @@
 								name="email"
 								required
 								placeholder="email@domain.com"
-								class="border-b border-black bg-transparent p-2 font-body text-sm focus:border-brand-primary focus:outline-none"
+								class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none"
 							/>
 						</div>
 
@@ -147,9 +143,10 @@
 							>
 							<input
 								type="tel"
+								pattern
 								name="phone"
 								placeholder="(512) 000-0000"
-								class="border-b border-black bg-transparent p-2 font-body text-sm focus:border-brand-primary focus:outline-none"
+								class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none"
 							/>
 						</div>
 
@@ -161,7 +158,7 @@
 							<select
 								name="service"
 								required
-								class="border-b border-black bg-transparent p-2 font-body text-sm focus:border-brand-primary focus:outline-none appearance-none cursor-pointer"
+								class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none appearance-none cursor-pointer"
 							>
 								<option value="" disabled selected>
 									Select a service...
@@ -190,7 +187,7 @@
 								rows="3"
 								required
 								placeholder="Brief description of your project and goals"
-								class="border-b border-black bg-transparent p-2 font-body text-sm focus:border-brand-primary focus:outline-none"
+								class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none"
 							></textarea>
 						</div>
 					</div>

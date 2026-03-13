@@ -12,7 +12,6 @@
 	/* Typography */
 	--font-heading: "Space Grotesk", sans-serif;
 	--font-body: "Hanken Grotesk", "Inter", sans-serif;
-	--font-mono: "IBM Plex Mono", "JetBrains Mono", monospace;
 }
 
 /* Base Styles */
@@ -29,6 +28,24 @@
 }
 
 @layer components {
+	/* card styles */
+	.card-container {
+		@apply grid grid-cols-1 md:grid-cols-3 gap-8;
+	}
+
+	.service-card {
+		@apply border-2 border-black p-8 flex flex-col gap-6 hover:bg-black transition-all duration-300;
+
+		.service-heading {
+			@apply flex justify-between items-start;
+
+			.service-heading-left {
+				@apply text-brand-primary group-hover:text-brand-secondary transition-colors;
+			}
+		}
+	}
+
+	/* button styles */
 	.btn-primary {
 		@apply bg-brand-primary border-2 border-transparent text-white font-bold px-12 py-5 rounded-full text-lg 
                transition-all duration-300 shadow-lg 
@@ -48,7 +65,7 @@
 	}
 
 	.nav-link {
-		@apply font-body text-gray-300 hover:text-brand-secondary hover:scale-110 transition-transform;
+		@apply font-heading text-gray-300 hover:text-brand-secondary hover:scale-110 transition-transform;
 	}
 
 	.brand-link {

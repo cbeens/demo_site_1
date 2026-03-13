@@ -15,5 +15,5 @@ interface ImportMeta {
 
 interface ImportMetaEnv {
 	readonly VITE_MAPBOX_TOKEN: string;
-	// add other env vars here as you create them
+	readonly VITE_CLIENT_ID: string;
 }
