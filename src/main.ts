@@ -13,10 +13,14 @@ window.addEventListener("DOMContentLoaded", async () => {
 		loadComponent("footer", "./src/components/footer.html"),
 	]);
 
+	await initRouter();
+
 	// 2. Initialize Form Handler for Contact Form (if it exists on the page)
-	if (document.getElementById("contact-form")) {
-		new FormHandler("contact-form", "http://localhost:3000/v1/leads");
-	}
+	document.addEventListener("page-loaded", () => {
+		if (document.getElementById("contact-form")) {
+			new FormHandler("contact-form", "http://localhost:3000/v1/leads");
+		}
+	});
 
 	// 3. Catch EVERY link that mentions your email and redirect it to the scroll
 	document.addEventListener("click", (e) => {
@@ -33,7 +37,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 		}
 	});
 
-	initRouter();
 	setupMobileMenu();
 	initBackToTop();
 });

@@ -18,31 +18,46 @@ export class FormHandler {
 		});
 	}
 
+	// Inside your FormHandler Class
 	private async handleSubmit() {
 		const formData = new FormData(this.formElement);
 		const payload = Object.fromEntries(formData.entries());
 
-		// Set Loading State
+		// 1. Get the Client ID from the form's data attribute (The Sovereign Way)
+		const clientId =
+			this.formElement.getAttribute("data-client-id") ||
+			"cbeens-dev-test";
+
 		this.setLoading(true);
 
 		try {
+			console.log(`📡 Transmitting Lead for [${clientId}]...`);
+
 			const response = await fetch(this.endpoint, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
-					clientId: "CLIENT_ID_FROM_CONFIG", // We'll get this from your .md files later
+					clientId: clientId,
 					data: payload,
+					metadata: {
+						sourceUrl: window.location.href,
+						submittedAt: new Date().toISOString(),
+					},
 				}),
 			});
 
 			if (response.ok) {
-				alert("Message Sent! We'll get back to you soon.");
+				console.log(
+					"✅ Transmission Successful:",
+					await response.json(),
+				);
 				this.formElement.reset();
+				// Handle success UI here later
 			} else {
-				throw new Error("Server error");
+				throw new Error("Relay rejected the payload");
 			}
 		} catch (error) {
-			alert("Oops! Something went wrong. Please try again.");
+			console.error("❌ Transmission Failed:", error);
 		} finally {
 			this.setLoading(false);
 		}

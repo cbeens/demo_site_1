@@ -79,6 +79,8 @@ export async function router(): Promise<void> {
 
 	window.lucide?.createIcons();
 	window.scrollTo(0, 0);
+
+	document.dispatchEvent(new CustomEvent("page-loaded"));
 }
 
 export function initRouter(): void {
