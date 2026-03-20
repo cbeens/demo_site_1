@@ -28,19 +28,75 @@
 }
 
 @layer components {
+	/* Service Grid Section */
+	.service-grid-container {
+		@apply w-full bg-gray-100 py-12 px-8 border-t border-black;
+
+		.service-grid {
+			@apply max-w-7xl mx-auto;
+
+			.service-grid-heading {
+				@apply mb-12;
+
+				.service-grid-heading-title {
+					@apply text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-4;
+				}
+			}
+		}
+	}
 	/* card styles */
 	.card-container {
 		@apply grid grid-cols-1 md:grid-cols-3 gap-8;
 	}
 
 	.service-card {
-		@apply border-2 border-black p-8 flex flex-col gap-6 hover:bg-black transition-all duration-300;
+		@apply border-2 border-black p-8 flex flex-col gap-6 transition-all duration-300;
 
 		.service-heading {
 			@apply flex justify-between items-start;
 
 			.service-heading-left {
-				@apply text-brand-primary group-hover:text-brand-secondary transition-colors;
+				@apply text-brand-primary transition-colors;
+			}
+
+			.service-heading-right {
+				@apply text-xl font-bold transition-colors;
+			}
+		}
+
+		.service-title {
+			@apply text-2xl uppercase transition-colors;
+		}
+
+		.service-body {
+			@apply text-gray-600 transition-colors;
+		}
+
+		.service-footer {
+			@apply mt-auto text-[10px] uppercase tracking-widest text-brand-primary transition-colors;
+		}
+
+		&:hover {
+			@apply bg-black;
+
+			.service-heading-left {
+				@apply text-brand-secondary;
+			}
+
+			.service-heading-right {
+				@apply text-white;
+			}
+
+			.service-title {
+				@apply text-white;
+			}
+
+			.service-body {
+				@apply text-gray-400;
+			}
+
+			.service-footer {
+				@apply text-brand-secondary;
 			}
 		}
 	}
@@ -99,6 +155,14 @@
 
 	.highlight-icon {
 		@apply text-gray-400 hover:text-brand-primary transition-all hover:scale-110;
+	}
+
+	.text-highlight-primary {
+		@apply text-brand-primary italic;
+	}
+
+	.heading-border {
+		@apply h-1 w-24 bg-brand-secondary mt-2;
 	}
 }
 
