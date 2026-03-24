@@ -1,0 +1,24 @@
+{
+	"titleMain": "Let's Get",
+	"titleHighlight": "Started",
+	"subtitle": "How can <span class=\"text-highlight-primary-bold\">cbeens.dev</span> supercharge your next project?",
+	"formCardTitle": "What can we do for you?",
+	"formCardSub": "We don't just build websites, we build digital infrastructure.",
+	"faqs": [
+		{
+			"summary": "Lightning Fast Performance",
+			"details": "We guarantee up to 99.99% uptime with a global CDN and enterprise-grade security. That's on top of the fastest website load-times in the industry."
+		},
+		{
+			"summary": "Elevated User Experience",
+			"details": "We create intuitive, user-friendly interfaces that engage your audience and drive conversions. Our designs are not only visually stunning but also optimized for usability and accessibility."
+		},
+		{
+			"summary": "Hand-Crafted Quality",
+			"details": "Custom-built solutions with a personal touch. We work closely with your team to understand your unique needs and deliver a product that exceeds your expectations."
+		}
+	],
+	"formFooter": "For more information or to discuss your next project, contact us today!",
+	"clientId": "cbeens-dev",
+	"submitText": "Submit"
+}

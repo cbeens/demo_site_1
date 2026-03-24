@@ -11,6 +11,10 @@ interface Window {
 // This handles the Vite environment variables specifically
 interface ImportMeta {
 	readonly env: ImportMetaEnv;
+	readonly glob: (
+		pattern: string,
+		options?: { as: string; eager: boolean },
+	) => Record<string, any>;
 }
 
 interface ImportMetaEnv {

@@ -19,6 +19,7 @@
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.2.1",
+		"front-matter": "^4.0.2",
 		"mapbox-gl": "^3.19.1"
 	}
 }
