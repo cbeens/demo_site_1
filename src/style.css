@@ -42,61 +42,545 @@
 					@apply text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-4;
 				}
 			}
+
+			/* card styles */
+			.card-container {
+				@apply grid grid-cols-1 md:grid-cols-3 gap-8;
+			}
+
+			.service-card {
+				@apply border-2 border-black p-8 flex flex-col gap-6 transition-all duration-300;
+
+				.service-heading {
+					@apply flex justify-between items-start;
+
+					.service-heading-left {
+						@apply text-brand-primary transition-colors;
+					}
+
+					.service-heading-right {
+						@apply text-xl font-bold transition-colors;
+					}
+				}
+
+				.service-title {
+					@apply text-2xl uppercase transition-colors;
+				}
+
+				.service-body {
+					@apply text-gray-500 transition-colors;
+				}
+
+				.service-footer {
+					@apply mt-auto text-[10px] uppercase tracking-widest text-brand-primary transition-colors;
+				}
+
+				&:hover {
+					@apply bg-black;
+
+					.service-heading-left {
+						@apply text-brand-secondary;
+					}
+
+					.service-heading-right {
+						@apply text-white;
+					}
+
+					.service-title {
+						@apply text-white;
+					}
+
+					.service-body {
+						@apply text-gray-400;
+					}
+
+					.service-footer {
+						@apply text-brand-secondary;
+					}
+				}
+			}
 		}
 	}
-	/* card styles */
-	.card-container {
-		@apply grid grid-cols-1 md:grid-cols-3 gap-8;
+
+	/* Contact Section */
+	.contact-container {
+		@apply w-full bg-gray-100 text-black py-12 px-8 border-t border-black;
+
+		.contact-heading {
+			@apply flex flex-col items-start text-center gap-4;
+		}
+
+		.contact-form {
+			@apply grid grid-cols-1 lg:grid-cols-2 border-2 border-black overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+
+			.form-heading {
+				@apply text-2xl font-bold uppercase tracking-tighter;
+			}
+
+			.form-card {
+				@apply p-6 md:p-8 border-b lg:border-b-0 lg:border-r border-black flex flex-col gap-8;
+			}
+		}
 	}
 
-	.service-card {
-		@apply border-2 border-black p-8 flex flex-col gap-6 transition-all duration-300;
+	/* Process Section*/
+	.process-container {
+		@apply w-full bg-white text-black py-20 px-8 border-t border-gray-100;
 
-		.service-heading {
-			@apply flex justify-between items-start;
+		.process-grid {
+			@apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
 
-			.service-heading-left {
-				@apply text-brand-primary transition-colors;
+			.process-card {
+				@apply p-8 border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-xl transition-all duration-300;
+
+				.process-card-icon-primary {
+					@apply text-brand-primary mb-6;
+				}
+
+				.process-card-icon-secondary {
+					@apply text-brand-secondary mb-6;
+				}
+
+				.process-card-heading {
+					@apply font-bold uppercase mb-3;
+				}
+
+				.process-card-body {
+					@apply text-sm text-gray-500 leading-relaxed;
+				}
+			}
+		}
+	}
+
+	/* Highlights Section */
+	.highlights-container {
+		@apply w-full bg-white text-black py-20 px-8;
+
+		.highlight-border-l {
+			@apply border-l-2 border-brand-secondary pl-8 py-4;
+		}
+	}
+
+	/* History Section */
+	.history-container {
+		@apply max-w-4xl mx-auto py-12 px-4;
+
+		.timeline {
+			@apply grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8 items-start;
+
+			.timeline-date {
+				@apply text-sm pt-1 font-bold text-brand-primary;
 			}
 
-			.service-heading-right {
-				@apply text-xl font-bold transition-colors;
+			.timeline-body {
+				@apply text-gray-500 leading-relaxed;
+			}
+		}
+	}
+
+	/* Mission Section */
+	.mission-container {
+		@apply w-full bg-black text-white py-16 px-8 border-t border-brand-primary/20;
+
+		.mission-statement-grid {
+			@apply grid grid-cols-1 md:grid-cols-2 gap-8;
+
+			.mission-card {
+				@apply border border-white/10 p-10 flex flex-col gap-6 transition-all duration-300;
+
+				.mission-card-icon {
+					@apply text-brand-primary transition-colors;
+				}
+
+				.mission-card-title {
+					@apply text-2xl font-bold uppercase tracking-widest text-brand-secondary;
+				}
+
+				.mission-card-body {
+					@apply text-gray-400 leading-relaxed;
+				}
+
+				/* Coordinate the hover state */
+				&:hover {
+					@apply bg-white/15;
+				}
+			}
+		}
+	}
+
+	/* Testimonial Section */
+	.testimonial-container {
+		@apply w-full bg-black text-white py-20 px-8 border-t border-brand-primary/20;
+
+		.testimonial-content-wrapper {
+			@apply max-w-7xl mx-auto flex flex-col gap-16;
+		}
+
+		/* Branding Row */
+		.brand-section {
+			@apply flex flex-col items-center gap-8;
+
+			.brand-grid {
+				@apply flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-90 transition-all duration-500;
+
+				.brand-link {
+					@apply flex flex-col items-center gap-2 transition-all duration-500 hover:scale-110;
+
+					span {
+						@apply text-[9px] uppercase tracking-widest text-gray-300;
+					}
+				}
 			}
 		}
 
-		.service-title {
-			@apply text-2xl uppercase transition-colors;
+		/* The Quote & Stats Layout */
+		.testimonial-grid {
+			@apply grid grid-cols-1 lg:grid-cols-2 gap-12 items-center;
+
+			.testimonial-quote-block {
+				@apply border-l-2 border-brand-secondary pl-8 transition-colors flex flex-col gap-6;
+
+				.quote-text {
+					@apply text-2xl md:text-3xl italic leading-relaxed;
+				}
+				.quote-attribution {
+					@apply flex flex-col;
+				}
+			}
+
+			.stat-grid {
+				@apply grid grid-cols-2 gap-4;
+
+				.stat-card {
+					@apply border border-white/10 p-8 flex flex-col items-center justify-center gap-2 hover:bg-white/15 transition-colors;
+
+					.stat-value {
+						@apply text-4xl font-bold;
+					}
+					.stat-label {
+						@apply text-[10px] uppercase tracking-widest text-gray-400;
+					}
+				}
+			}
+		}
+	}
+
+	/* Hero Section */
+	.hero-container {
+		@apply relative min-h-[85vh] flex flex-col items-center justify-center px-8 py-20 text-center overflow-hidden;
+
+		.hero-background {
+			@apply absolute inset-0 z-0;
+
+			.hero-bg-image {
+				@apply w-full h-full object-cover opacity-15;
+			}
+
+			.hero-bg-overlay {
+				@apply absolute inset-0 bg-linear-to-b from-white via-transparent to-white;
+			}
 		}
 
-		.service-body {
-			@apply text-gray-600 transition-colors;
+		.hero-content {
+			@apply relative z-10 max-w-4xl mx-auto;
+
+			.hero-title {
+				@apply text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8;
+			}
+
+			.hero-badge {
+				@apply inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-secondary/30 bg-brand-secondary/5 mb-8;
+
+				.badge-text {
+					@apply text-xs font-bold tracking-widest text-brand-secondary;
+				}
+
+				.badge-ping-wrapper {
+					@apply relative flex h-2 w-2;
+
+					.badge-ping {
+						@apply animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-secondary opacity-75;
+					}
+
+					.badge-dot {
+						@apply relative inline-flex rounded-full h-2 w-2 bg-brand-secondary;
+					}
+				}
+			}
+
+			.hero-actions {
+				@apply flex flex-col sm:flex-row gap-4 justify-center items-center;
+			}
+		}
+	}
+
+	/* Team Section */
+	.team-container {
+		@apply w-full bg-gray-100 text-black py-16 px-8 border-t border-gray-200;
+
+		.founder-grid {
+			@apply grid grid-cols-1 lg:grid-cols-12 gap-8 items-start;
+
+			/* Left Column: Visuals & Socials */
+			.founder-sidebar {
+				@apply lg:col-span-4 flex flex-col gap-6 items-center;
+
+				.headshot-wrapper {
+					@apply relative w-full max-w-50;
+
+					.headshot-glow {
+						@apply absolute -inset-1 bg-brand-primary/10 rounded-xl blur opacity-25;
+					}
+
+					.headshot-frame {
+						@apply relative aspect-square overflow-hidden rounded-xl border border-gray-200 bg-white p-1.5 shadow-sm;
+
+						img {
+							@apply w-full h-full object-cover rounded-lg grayscale transition-all duration-500;
+						}
+					}
+
+					.location-badge {
+						@apply absolute -bottom-2 -right-2 bg-black text-white text-[9px] px-3 py-1.5 uppercase tracking-widest shadow-xl;
+					}
+
+					/* State logic: hover the wrapper, color the image */
+					&:hover .headshot-frame img {
+						@apply grayscale-0;
+					}
+				}
+
+				.social-links {
+					@apply flex gap-8;
+				}
+			}
+
+			/* Right Column: Bio Content */
+			.founder-bio {
+				@apply lg:col-span-8 flex flex-col gap-5;
+
+				.bio-header {
+					@apply flex flex-col gap-1;
+
+					h3 {
+						@apply text-2xl font-bold text-brand-primary;
+					}
+					p {
+						@apply text-xs uppercase tracking-widest text-gray-500;
+					}
+				}
+
+				.bio-text {
+					@apply flex flex-col gap-5 text-gray-700 text-sm leading-relaxed max-w-2xl;
+				}
+			}
+		}
+	}
+
+	/* Comparisons Section */
+	.comparisons-container {
+		@apply w-full bg-gray-100 py-16 px-8 border-t border-gray-200;
+
+		.comparisons-wrapper {
+			@apply max-w-5xl mx-auto;
 		}
 
-		.service-footer {
-			@apply mt-auto text-[10px] uppercase tracking-widest text-brand-primary transition-colors;
+		.comparisons-header {
+			@apply text-center mb-10;
 		}
 
-		&:hover {
-			@apply bg-black;
+		.table-responsive-wrapper {
+			@apply overflow-x-auto border border-gray-200 rounded-xl bg-white shadow-sm;
+		}
 
-			.service-heading-left {
-				@apply text-brand-secondary;
+		.comparison-table {
+			@apply w-full text-left border-collapse;
+
+			thead tr {
+				@apply bg-black text-white;
 			}
 
-			.service-heading-right {
-				@apply text-white;
+			th {
+				@apply p-6 text-xs uppercase tracking-widest;
+
+				/* Targeted Column Colors */
+				&:nth-child(2) {
+					@apply text-brand-secondary;
+				}
+				&:nth-child(3) {
+					@apply text-gray-400;
+				}
 			}
 
-			.service-title {
-				@apply text-white;
+			tbody tr {
+				@apply border-b border-gray-100 last:border-0;
 			}
 
-			.service-body {
-				@apply text-gray-400;
+			td {
+				@apply p-6 text-sm;
+
+				/* Label Column */
+				&:nth-child(1) {
+					@apply font-bold;
+				}
+
+				/* cbeens.dev Column */
+				&:nth-child(2) {
+					@apply text-brand-primary font-bold;
+				}
+
+				/* Standard Agency Column */
+				&:nth-child(3) {
+					@apply text-gray-500;
+				}
+			}
+		}
+	}
+
+	/* Footer Section */
+	.footer-container {
+		@apply w-full bg-black text-white px-8 py-10 border-t border-brand-primary/20;
+
+		.footer-content-wrapper {
+			@apply max-w-7xl mx-auto flex flex-col gap-8;
+		}
+
+		.footer-main-grid {
+			@apply grid grid-cols-1 md:grid-cols-3 items-center gap-8 w-full;
+		}
+
+		.footer-socials {
+			@apply flex justify-center md:justify-end items-center gap-4;
+
+			.footer-icon-link {
+				@apply transition-transform hover:scale-110;
+
+				.footer-icon {
+					@apply h-4 w-4 brightness-0 invert hover:opacity-70 transition-opacity;
+				}
+			}
+		}
+
+		.footer-legal-nav {
+			@apply border-t border-white/10 pt-6 flex justify-center gap-8 text-[10px] uppercase tracking-[0.2em] text-gray-500;
+		}
+	}
+
+	/* Navigation Section */
+	.nav-container {
+		@apply w-full bg-black text-white flex items-center justify-between px-8 py-4 sticky top-0 z-50;
+
+		.nav-logo-wrapper {
+			@apply shrink-0;
+
+			.nav-logo {
+				@apply h-8 -ml-4 hover:scale-110 transition-transform;
+			}
+		}
+
+		.nav-right-side {
+			@apply flex items-center gap-6;
+
+			.nav-desktop-links {
+				@apply hidden lg:flex gap-8 font-bold border-r border-white/20 pr-6;
+
+				/* Instead of @apply nav-link, we use the raw styles here */
+				a {
+					@apply font-heading text-white hover:text-brand-secondary hover:scale-110 transition-transform;
+				}
 			}
 
-			.service-footer {
-				@apply text-brand-secondary;
+			.nav-mobile-toggle {
+				@apply lg:hidden cursor-pointer p-2 font-heading text-white hover:text-brand-secondary hover:scale-110 transition-transform;
+			}
+
+			.nav-cta-icons {
+				@apply hidden md:flex items-center gap-4;
+			}
+		}
+
+		/* Mobile Drawer */
+		.mobile-drawer {
+			@apply fixed inset-0 top-[64px] bg-white z-40 translate-x-full transition-transform duration-300 ease-in-out lg:hidden;
+
+			&.is-open {
+				@apply translate-x-0;
+			}
+
+			.drawer-content {
+				@apply flex flex-col p-8 gap-2;
+
+				/* Link styles within the drawer */
+				.drawer-link {
+					@apply text-2xl font-heading font-bold p-6 text-black border-b border-black/10 hover:text-brand-primary hover:bg-brand-primary/5 transition-colors;
+				}
+
+				.drawer-cta-wrapper {
+					@apply flex flex-col gap-4 mt-8 md:hidden;
+				}
+			}
+		}
+	}
+
+	/* Location Section */
+	.location-container {
+		@apply w-full mx-auto bg-white border-t border-black grid grid-cols-1 lg:grid-cols-2;
+
+		.map-wrapper {
+			@apply relative w-full h-[400px] md:h-[500px] lg:h-full min-h-[400px] bg-gray-100 border-b lg:border-b-0 lg:border-r border-black;
+
+			#map {
+				@apply absolute inset-0 w-full h-full;
+			}
+
+			.map-badge {
+				@apply absolute top-4 left-4 z-10 bg-black text-white px-3 py-1 text-[10px] uppercase tracking-widest;
+			}
+		}
+
+		.contact-details {
+			@apply p-8 md:p-12 lg:p-16 flex flex-col justify-center gap-8;
+
+			.contact-heading-block {
+				@apply flex flex-col gap-4;
+			}
+
+			.contact-links-list {
+				@apply flex flex-col gap-5;
+
+				/* The shared row style for all 3 items */
+				.contact-row {
+					@apply flex items-start gap-4 border-b border-black/5 pb-4 transition-all duration-300;
+
+					/* 1. Row Hover: Change row border */
+					&:hover {
+						@apply border-brand-primary;
+					}
+
+					.icon-box {
+						@apply p-2.5 flex items-center justify-center shrink-0 transition-all duration-300
+                               bg-gray-50 rounded-full border-2 border-black/5 text-black;
+					}
+
+					/* 2. Row Hover: Trigger icon box changes */
+					&:hover .icon-box {
+						@apply border-brand-primary text-brand-primary bg-brand-primary/10;
+					}
+
+					.contact-text {
+						@apply font-bold text-base md:text-lg;
+					}
+
+					.hours-content {
+						@apply flex flex-col gap-1 text-sm uppercase tracking-tight text-gray-500;
+						.day-label {
+							@apply font-bold text-black;
+						}
+						.weekend-label {
+							@apply font-bold text-black/50;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -118,10 +602,6 @@
 
 	.btn-secondary-icon {
 		@apply text-brand-primary border-brand-primary bg-white hover:scale-105 hover:bg-brand-primary/90 hover:text-white border-2 hover:border-transparent transition-transform rounded-full p-3;
-	}
-
-	.nav-link {
-		@apply font-heading text-gray-300 hover:text-brand-secondary hover:scale-110 transition-transform;
 	}
 
 	.brand-link {
@@ -153,16 +633,85 @@
 		stroke-width: 1.5;
 	}
 
+	/* Common Styles */
+	.component-heading-md {
+		@apply max-w-7xl mx-auto flex flex-col gap-12;
+	}
+
+	.component-heading-md-title {
+		@apply text-3xl md:text-5xl font-bold uppercase;
+	}
+
+	.component-heading-md-subtitle {
+		@apply text-gray-400 text-xs uppercase tracking-[0.3em];
+	}
+
+	.component-heading-lg-title {
+		@apply text-5xl md:text-7xl font-bold uppercase tracking-tighter;
+	}
+
 	.highlight-icon {
 		@apply text-gray-400 hover:text-brand-primary transition-all hover:scale-110;
 	}
 
-	.text-highlight-primary {
+	.text-highlight-primary-italic {
 		@apply text-brand-primary italic;
+	}
+
+	.text-highlight-primary-bold {
+		@apply text-brand-primary font-bold;
 	}
 
 	.heading-border {
 		@apply h-1 w-24 bg-brand-secondary mt-2;
+	}
+
+	.heading-border-lg {
+		@apply h-1 w-32 bg-brand-secondary;
+	}
+
+	.heading-border-l {
+		@apply border-l-4 border-brand-secondary pl-6;
+	}
+
+	.subtle-text {
+		@apply text-gray-400 text-sm;
+	}
+
+	.bold-text {
+		@apply font-bold mb-2;
+	}
+
+	.flex-gap-2 {
+		@apply flex flex-col gap-2;
+	}
+
+	.flex-gap-4 {
+		@apply flex flex-col gap-4;
+	}
+
+	.flex-gap-12 {
+		@apply flex flex-col gap-12;
+	}
+
+	.centered-container {
+		@apply max-w-7xl mx-auto flex flex-col gap-10;
+	}
+
+	.centered-heading {
+		@apply flex flex-col items-center text-center gap-2;
+	}
+
+	.quote-container {
+		@apply max-w-4xl mx-auto text-center;
+
+		.quote-text {
+			@apply text-2xl italic leading-relaxed text-gray-400;
+
+			.quote-highlight {
+				@apply text-brand-secondary font-bold not-italic;
+			}
+		}
 	}
 }
 
@@ -174,17 +723,6 @@
 	flex: 1; /* This expands to fill the space between nav and footer */
 	display: flex;
 	flex-direction: column;
-}
-
-#location {
-	display: block;
-	width: 100%;
-	min-height: 500px; /* This gives the map container a physical "body" */
-}
-
-#map {
-	width: 100%;
-	height: 100%;
 }
 
 #hero {

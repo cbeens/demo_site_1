@@ -1,24 +1,16 @@
-<section
-	class="w-full mx-auto bg-white border-t border-black grid grid-cols-1 lg:grid-cols-2"
->
-	<div
-		class="h-100 lg:h-auto min-h-125 bg-gray-100 relative border-b lg:border-b-0 lg:border-r border-black"
-	>
-		<div id="map" class="absolute inset-0"></div>
-		<div
-			class="absolute top-4 left-4 z-10 bg-black text-white px-3 py-1 text-[10px] uppercase tracking-widest"
-		>
-			Austin, TX
-		</div>
+<section class="location-container">
+	<div class="map-wrapper">
+		<div id="map"></div>
+		<div class="map-badge">Austin, TX</div>
 	</div>
 
-	<div class="p-8 md:p-12 lg:p-16 flex flex-col justify-center gap-8">
-		<div class="flex flex-col gap-4">
+	<div class="contact-details">
+		<div class="contact-heading-block">
 			<h2
 				class="text-4xl md:text-5xl uppercase leading-[0.9] tracking-tighter"
 			>
 				Local vibes. <br />
-				<span class="text-highlight-primary">Global reach.</span>
+				<span class="text-highlight-primary-italic">Global reach.</span>
 			</h2>
 			<p class="text-gray-600 max-w-md text-sm md:text-base">
 				Built in Austin, Texas. Ready to serve your clients worldwide.
@@ -28,14 +20,9 @@
 			</p>
 		</div>
 
-		<div class="flex flex-col gap-5">
-			<a
-				href="mailto:info@cbeens.dev"
-				class="group flex items-center gap-4 border-b border-black/5 pb-4 hover:border-brand-primary transition-colors"
-			>
-				<span
-					class="p-2.5 border-2 bg-brand-primary/5 text-brand-primary rounded-full"
-				>
+		<div class="contact-links-list">
+			<a href="mailto:info@cbeens.dev" class="contact-row">
+				<span class="icon-box">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="18"
@@ -51,18 +38,11 @@
 						<rect x="2" y="4" width="20" height="16" rx="2" />
 					</svg>
 				</span>
-				<span class="font-bold text-base md:text-lg"
-					>info@cbeens.dev</span
-				>
+				<span class="contact-text">info@cbeens.dev</span>
 			</a>
 
-			<a
-				href="tel:+15120000000"
-				class="group flex items-center gap-4 border-b border-black/5 pb-4 hover:border-brand-secondary transition-colors"
-			>
-				<span
-					class="p-2.5 bg-brand-secondary/5 text-brand-secondary rounded-full border-2 border-brand-secondary/20"
-				>
+			<a href="tel:+15120000000" class="contact-row">
+				<span class="icon-box">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="18"
@@ -79,17 +59,11 @@
 						/>
 					</svg>
 				</span>
-				<span class="font-bold text-base md:text-lg"
-					>(512) 000-0000</span
-				>
+				<span class="contact-text">(512) 000-0000</span>
 			</a>
 
-			<div
-				class="flex items-start gap-4 text-sm uppercase tracking-tight text-gray-500"
-			>
-				<span
-					class="p-2.5 bg-gray-50 rounded-full border-black/5 text-black border-2"
-				>
+			<div class="contact-row">
+				<span class="icon-box">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="18"
@@ -111,16 +85,14 @@
 						<circle cx="16" cy="16" r="6" />
 					</svg>
 				</span>
-				<div class="flex flex-col gap-1">
+				<div class="hours-content">
 					<p>Business Hours</p>
 					<p>
-						<span class="font-bold text-black">Mon - Fri:</span> 9AM
-						- 5PM (CST)
+						<span class="day-label">Mon - Fri:</span> 9AM - 5PM
+						(CST)
 					</p>
 					<p>
-						<span class="font-bold text-black text-opacity-60"
-							>Sat - Sun:</span
-						>
+						<span class="weekend-label">Sat - Sun:</span>
 						<span class="italic">By Appointment Only</span>
 					</p>
 				</div>

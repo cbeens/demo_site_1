@@ -1,31 +1,24 @@
-<nav
-	class="w-full bg-black text-white flex items-center justify-between px-8 py-4"
->
-	<a href="/" class="shrink-0">
+<nav class="nav-container">
+	<a href="/" class="nav-logo-wrapper">
 		<img
 			src="/src/assets/cbeens_logo_h.svg"
 			alt="cbeens.dev Logo"
-			class="h-8 -ml-4 hover:scale-110 transition-transform"
+			class="nav-logo"
 		/>
 	</a>
 
-	<div class="flex items-center gap-6">
-		<div
-			class="hidden lg:flex gap-8 font-header font-bold border-r border-white/20 pr-6"
-		>
+	<div class="nav-right-side">
+		<div class="nav-desktop-links">
 			<a href="/" class="nav-link">Home</a>
 			<a href="/about" class="nav-link">About</a>
 			<a href="/services" class="nav-link">Services</a>
 		</div>
 
-		<button
-			id="mobile-menu-toggle"
-			class="lg:hidden cursor-pointer nav-link p-2"
-		>
+		<button id="mobile-menu-toggle" class="nav-mobile-toggle">
 			<i data-lucide="menu"></i>
 		</button>
 
-		<div class="hidden md:flex items-center gap-4">
+		<div class="nav-cta-icons">
 			<a href="tel:+15120000000" class="btn-primary-icon">
 				<i data-lucide="phone" class="nav-icon"></i>
 			</a>
@@ -35,16 +28,13 @@
 		</div>
 	</div>
 
-	<div
-		id="mobile-drawer"
-		class="fixed inset-0 top-21 bg-white z-40 translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
-	>
-		<div class="flex flex-col p-8 gap-2">
+	<div id="mobile-drawer" class="mobile-drawer">
+		<div class="drawer-content">
 			<a href="/" class="drawer-link">Home</a>
 			<a href="/about" class="drawer-link">About</a>
 			<a href="/services" class="drawer-link">Services</a>
 
-			<div class="flex flex-col gap-4 mt-8 md:hidden">
+			<div class="drawer-cta-wrapper">
 				<a
 					href="tel:+15120000000"
 					class="btn-primary flex items-center justify-center gap-3"

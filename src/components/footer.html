@@ -1,14 +1,11 @@
-<footer
-	class="w-full bg-black text-white px-8 py-10 border-t border-brand-primary/20"
->
-	<div class="max-w-7xl mx-auto flex flex-col gap-8">
-		<div class="grid grid-cols-1 md:grid-cols-3 items-center gap-8 w-full">
+<footer class="footer-container">
+	<div class="footer-content-wrapper">
+		<div class="footer-main-grid">
 			<div
 				class="flex justify-center md:justify-start md:order-1 order-3"
 			>
 				<a href="https://cbeens.dev" class="text-xs nav-link">
-					Built by
-					<span class="font-bold uppercase">cbeens.dev</span>
+					Built by <span class="font-bold uppercase">cbeens.dev</span>
 				</a>
 			</div>
 
@@ -25,54 +22,70 @@
 				</p>
 			</div>
 
-			<div
-				class="flex justify-center md:justify-end items-center gap-4 order-2 md:order-3"
-			>
+			<div class="footer-socials order-2 md:order-3">
 				<a
 					href="https://github.com/cbeens"
-					class="nav-link"
+					class="footer-icon-link"
 					title="GitHub"
 				>
-					<i data-lucide="github" class="footer-icon"></i>
+					<img
+						src="/src/assets/icons/github.svg"
+						class="footer-icon"
+						alt="GitHub"
+					/>
 				</a>
 				<a
 					href="https://linkedin.com/company/cbeens-dev"
-					class="nav-link"
+					class="footer-icon-link"
 					title="LinkedIn"
 				>
-					<i data-lucide="linkedin" class="footer-icon"></i>
+					<img
+						src="/src/assets/icons/linkedin.svg"
+						class="footer-icon"
+						alt="LinkedIn"
+					/>
 				</a>
-				<a href="https://x.com/cbeensdev" class="nav-link" title="X">
-					<i data-lucide="twitter" class="footer-icon"></i>
+				<a
+					href="https://x.com/cbeensdev"
+					class="footer-icon-link"
+					title="X"
+				>
+					<img
+						src="/src/assets/icons/twitter-x.svg"
+						class="footer-icon"
+						alt="X"
+					/>
 				</a>
 				<a
 					href="https://instagram.com/cbeens.dev"
-					class="nav-link"
+					class="footer-icon-link"
 					title="Instagram"
 				>
-					<i data-lucide="instagram" class="footer-icon"></i>
+					<img
+						src="/src/assets/icons/instagram.svg"
+						class="footer-icon"
+						alt="Instagram"
+					/>
 				</a>
 				<a
 					href="https://youtube.com/@cbeensdev"
-					class="nav-link"
+					class="footer-icon-link"
 					title="YouTube"
 				>
-					<i data-lucide="youtube" class="footer-icon"></i>
+					<img
+						src="/src/assets/icons/youtube.svg"
+						class="footer-icon"
+						alt="YouTube"
+					/>
 				</a>
 			</div>
 		</div>
 
-		<div class="border-t border-white/10 pt-6">
-			<nav
-				class="flex justify-center gap-8 text-[10px] uppercase tracking-[0.2em] text-gray-500"
+		<nav class="footer-legal-nav">
+			<a href="https://cbeens.dev/privacy/" class="nav-link">Privacy</a>
+			<a href="https://cbeens.dev/terms-of-service" class="nav-link"
+				>Terms</a
 			>
-				<a href="https://cbeens.dev/privacy/" class="nav-link"
-					>Privacy</a
-				>
-				<a href="https://cbeens.dev/terms-of-service" class="nav-link"
-					>Terms</a
-				>
-			</nav>
-		</div>
+		</nav>
 	</div>
 </footer>

@@ -1,5 +1,5 @@
 /**
- * The Sovereign SPA Router.
+ * cbeens.dev SPA Router.
  * Orchestrates tiered component injection and performance telemetry.
  * @module Router
  */
@@ -17,12 +17,14 @@ export async function router(): Promise<void> {
 	const path: string = window.location.pathname;
 	const route: string = routes[path] || routes["/"];
 
-	// 1. Load the "Parent" Page first (home.html)
+	// 1. Load the "Parent" Page (e.g., home.html)
 	await loadComponent("app", route);
 
-	// 2. Load "Sub-Components" for specific pages
+	// 2. Define page-specific component loads
+	const componentTasks: Promise<any>[] = [];
+
 	if (path === "/" || path === "") {
-		await Promise.all([
+		componentTasks.push(
 			loadComponent("hero", "./src/components/home/hero.html"),
 			loadComponent(
 				"service-grid",
@@ -32,15 +34,15 @@ export async function router(): Promise<void> {
 				"testimonial",
 				"./src/components/home/testimonial.html",
 			),
-		]);
+		);
 	} else if (path === "/about") {
-		await Promise.all([
+		componentTasks.push(
 			loadComponent("team", "./src/components/about/team.html"),
 			loadComponent("history", "./src/components/about/history.html"),
 			loadComponent("mission", "./src/components/about/mission.html"),
-		]);
+		);
 	} else if (path === "/services") {
-		await Promise.all([
+		componentTasks.push(
 			loadComponent(
 				"services",
 				"./src/components/services/services.html",
@@ -58,32 +60,41 @@ export async function router(): Promise<void> {
 				"highlights",
 				"./src/components/services/highlights.html",
 			),
-		]);
+		);
 	}
 
-	// Load shared components (Contact & Location) for all pages
-	await Promise.all([
+	// Always load shared components
+	componentTasks.push(
 		loadComponent("contact", "./src/components/shared/contact.html"),
 		loadComponent("location", "./src/components/shared/location.html"),
-	]);
+	);
 
-	// 3. Initialize Map & Metrics AFTER sub-components are in
+	// CRITICAL: Wait for ALL components to be in the DOM before moving to JS init
+	await Promise.all(componentTasks);
+
+	// 3. Initialize Map & Metrics
 	const token = import.meta.env.VITE_MAPBOX_TOKEN;
-	initializeMap(token);
+	if (document.getElementById("map")) {
+		initializeMap(token);
+	}
 
-	const [entry] = performance.getEntriesByType("navigation");
+	// Update Telemetry
+	const [entry] = performance.getEntriesByType("navigation") as any;
 	const display = document.getElementById("load-time-display");
 	if (entry && display) {
 		display.innerText = `${Math.round(entry.duration)}ms`;
 	}
 
-	window.lucide?.createIcons();
-	window.scrollTo(0, 0);
+	// RE-SCAN DOM FOR ICONS (This hits footer, contact, and the new team/hero sections)
+	if (window.lucide) {
+		window.lucide.createIcons();
+	}
 
+	window.scrollTo(0, 0);
 	document.dispatchEvent(new CustomEvent("page-loaded"));
 }
 
-export function initRouter(): void {
+export async function initRouter(): Promise<void> {
 	window.addEventListener("popstate", router);
 
 	document.addEventListener("click", (e) => {
