@@ -1,14 +1,12 @@
 /**
- * cbeens.dev SPA Router (Sovereign Engine Refactor).
- * Orchestrates tiered component injection, Markdown/JSON stitching,
- * and performance telemetry.
- * @module Router
+ * cbeens.dev SPA Router
  */
 
 import fm from "front-matter";
 import { loadComponent } from "./componentLoader";
 import { initializeMap } from "./map";
 import { stitchPage } from "./stitcher";
+import { renderNav, renderFooter } from "./factory";
 
 const routes: { [key: string]: string } = {
 	"/": "./src/pages/home.html",
@@ -16,7 +14,6 @@ const routes: { [key: string]: string } = {
 	"/services": "./src/pages/services.html",
 };
 
-// Helper to fetch JSON data for the stitcher
 const fetchFileData = async (path: string) => {
 	const response = await fetch(`/src/data/${path}`);
 	if (!response.ok) throw new Error(`Failed to fetch data: ${path}`);
@@ -27,92 +24,69 @@ export async function router(): Promise<void> {
 	const path: string = window.location.pathname;
 	const route: string = routes[path] || routes["/"];
 
-	// 1. Load the "Parent" Page shell (The HTML structure)
+	// 1. Load the Page Shell
+	// --- GLOBAL SHELL INJECTION ---
+	const navShell = document.getElementById("nav");
+	const footerShell = document.getElementById("footer");
+
+	if (navShell && navShell.children.length === 0) {
+		const navData = await fetchFileData("nav.json");
+		const html = renderNav(navData);
+		console.log("Injecting Nav HTML:", html); // DEBUG 1
+		navShell.innerHTML = html;
+	}
+
+	if (footerShell && footerShell.children.length === 0) {
+		const footerData = await fetchFileData("footer.json");
+		const html = renderFooter(footerData);
+		console.log("Injecting Footer HTML:", html); // DEBUG 2
+		footerShell.innerHTML = html;
+	}
+
 	await loadComponent("app", route);
 
-	// 2. Define page-specific component loads
+	// Refresh icons immediately for global shells
+	if (window.lucide) window.lucide.createIcons();
+
 	const componentTasks: Promise<any>[] = [];
+	const mdMap: { [key: string]: string } = {
+		"/": "/src/pages/home.md",
+		"/index.html": "/src/pages/home.md",
+		"/about": "/src/pages/about.md",
+		"/services": "/src/pages/services.md",
+	};
 
-	if (path === "/" || path === "" || path === "index.html") {
-		try {
-			// Fetch and Parse the Page-Level Markdown
-			const res = await fetch("/src/pages/home.md");
-			const text = await res.text();
+	const mdPath = mdMap[path] || mdMap["/"];
 
-			// front-matter uses 'attributes' for the parsed YAML
-			const { attributes } = fm<any>(text);
+	try {
+		const res = await fetch(mdPath);
+		const text = await res.text();
+		const { attributes } = fm<any>(text);
 
-			// Stitch and Load each component defined in home.md
-			if (attributes.components && Array.isArray(attributes.components)) {
-				for (const comp of attributes.components) {
-					// Generate the HTML string using the Factory Map via stitchPage
-					const componentHtml = await stitchPage(comp, fetchFileData);
-
-					// Inject the generated STRING (isPath: false) into the target ID
-					componentTasks.push(
-						loadComponent(comp.id, componentHtml, false),
-					);
-				}
-			}
-		} catch (error) {
-			console.error("Sovereign Engine Error (Home):", error);
+		// DYNAMIC TITLE UPDATE
+		if (attributes.title) {
+			document.title = attributes.title;
+		} else {
+			document.title = "cbeens.dev";
 		}
-	} else if (path === "/about") {
-		// Keep About as-is for now (Manual paths) until we migrate about.md
-		componentTasks.push(
-			loadComponent("team", "./src/components/about/team.html"),
-			loadComponent("history", "./src/components/about/history.html"),
-			loadComponent("mission", "./src/components/about/mission.html"),
-		);
-	} else if (path === "/services") {
-		// Keep Services as-is for now (Manual paths) until we migrate services.md
-		componentTasks.push(
-			loadComponent(
-				"services",
-				"./src/components/services/services.html",
-			),
-			loadComponent(
-				"comparisons",
-				"./src/components/services/comparisons.html",
-			),
-			loadComponent("process", "./src/components/services/process.html"),
-			loadComponent(
-				"service-list",
-				"./src/components/services/service_list.html",
-			),
-			loadComponent(
-				"highlights",
-				"./src/components/services/highlights.html",
-			),
-		);
+
+		if (attributes.components && Array.isArray(attributes.components)) {
+			for (const comp of attributes.components) {
+				const componentHtml = await stitchPage(comp, fetchFileData);
+				componentTasks.push(
+					loadComponent(comp.id, componentHtml, false),
+				);
+			}
+		}
+	} catch (error) {
+		console.error(`Sovereign Engine Error (${path}):`, error);
 	}
 
-	// Always load shared components (These are now factory-ready)
-	componentTasks.push(
-		loadComponent("contact", "./src/components/shared/contact.html"),
-		loadComponent("location", "./src/components/shared/location.html"),
-	);
-
-	// CRITICAL: Wait for ALL components to be in the DOM before moving to JS init
 	await Promise.all(componentTasks);
 
-	// 3. Initialize Map & Metrics (Preserved 100%)
+	// Initialize scripts (Map, Lucide, etc.)
 	const token = import.meta.env.VITE_MAPBOX_TOKEN;
-	if (document.getElementById("map")) {
-		initializeMap(token);
-	}
-
-	// Update Telemetry (Preserved 100%)
-	const [entry] = performance.getEntriesByType("navigation") as any;
-	const display = document.getElementById("load-time-display");
-	if (entry && display) {
-		display.innerText = `${Math.round(entry.duration)}ms`;
-	}
-
-	// RE-SCAN DOM FOR ICONS
-	if (window.lucide) {
-		window.lucide.createIcons();
-	}
+	if (document.getElementById("map")) initializeMap(token);
 
 	window.scrollTo(0, 0);
 	document.dispatchEvent(new CustomEvent("page-loaded"));
@@ -120,7 +94,6 @@ export async function router(): Promise<void> {
 
 export async function initRouter(): Promise<void> {
 	window.addEventListener("popstate", router);
-
 	document.addEventListener("click", (e) => {
 		const anchor = (e.target as HTMLElement)?.closest("a");
 		if (anchor && anchor.href.startsWith(window.location.origin)) {
@@ -129,6 +102,5 @@ export async function initRouter(): Promise<void> {
 			router();
 		}
 	});
-
 	router();
 }

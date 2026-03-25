@@ -1,0 +1,18 @@
+{
+	"title": "Our Mission",
+	"quote_main": "To empower local Austin businesses with",
+	"quote_highlight": "Sovereign Tech",
+	"quote_suffix": "— eliminating digital bloat through high-performance engineering.",
+	"values": [
+		{
+			"icon": "zap",
+			"title": "Performance First",
+			"body": "Speed is a feature, not an afterthought. Every line of code is hand-crafted to ensure your digital presence dominates the Austin market with sub-second load times."
+		},
+		{
+			"icon": "shield-check",
+			"title": "Sovereign Control",
+			"body": "No black boxes or proprietary traps. We build open-standard systems that give you 100% ownership of your data, your platform, and your digital future."
+		}
+	]
+}

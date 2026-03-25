@@ -1,17 +1,14 @@
 ---
-title: "About | cbeens.dev"
-description: "Learn about our journey from full-stack development to creating the Sovereign Engine for Austin small businesses."
-layout: "main-template"
-permalink: "/about"
+title: "cbeens.dev - About"
 components:
     - id: "history"
+      data_source: "history.json"
     - id: "mission"
+      data_source: "mission.json"
     - id: "team"
-      data_source: "team-members.json"
+      data_source: "team.json"
     - id: "contact"
+      data_source: "contact.json"
     - id: "location"
+      data_source: "location.json"
 ---
-
-# The Mission
-
-Breaking away from "Big Box" SaaS bloat to provide lean, mean, and sovereign tech.

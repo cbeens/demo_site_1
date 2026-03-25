@@ -8,7 +8,7 @@
 			href="/src/assets/cbeens_dougg_icon.svg"
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>cbeens.dev</title>
+		<title></title>
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,20 +23,20 @@
 		/>
 	</head>
 	<body>
-		<div id="nav" class="sticky top-0 z-50"></div>
-		<div id="app"></div>
-		<div id="footer"></div>
+		<header id="nav" class="nav-container"></header>
+
+		<main id="app"></main>
+
+		<footer id="footer" class="footer-container"></footer>
+
 		<button
 			id="back-to-top"
-			class="btn-primary-icon fixed bottom-8 right-8 z-50 hidden transition-all active:scale-90 hover:cursor-pointer"
+			class="btn-primary-icon fixed bottom-8 right-8 z-50 hidden transition-all active:scale-90"
 		>
 			<i data-lucide="arrow-up"></i>
 		</button>
 
-		<script type="module" src="/src/main.ts"></script>
 		<script src="https://unpkg.com/lucide@latest"></script>
-		<script>
-			lucide.createIcons();
-		</script>
+		<script type="module" src="/src/main.ts"></script>
 	</body>
 </html>

@@ -1,0 +1,19 @@
+{
+	"links": [
+		{ "label": "Home", "url": "/" },
+		{ "label": "About", "url": "/about" },
+		{ "label": "Services", "url": "/services" }
+	],
+	"ctas": [
+		{
+			"icon": "phone",
+			"url": "tel:+15120000000",
+			"class": "btn-primary-icon"
+		},
+		{
+			"icon": "mail",
+			"url": "mailto:info@cbeens.dev",
+			"class": "btn-secondary-icon"
+		}
+	]
+}

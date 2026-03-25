@@ -1,5 +1,5 @@
 ---
-title: "Home | cbeens.dev"
+title: "cbeens.dev - Home"
 description: "Your friendly neighborhood virtual CTO."
 layout: "main-template"
 permalink: "/"
@@ -16,7 +16,3 @@ components:
     - id: "location"
       data_source: "location.json"
 ---
-
-# Sovereign Web Solutions
-
-Building the digital infrastructure that grows with your business.

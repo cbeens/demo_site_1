@@ -378,14 +378,14 @@
 	}
 
 	/* Comparisons Section */
-	.comparisons-container {
+	.benchmarks-container {
 		@apply w-full bg-gray-100 py-16 px-8 border-t border-gray-200;
 
-		.comparisons-wrapper {
+		.benchmarks-wrapper {
 			@apply max-w-5xl mx-auto;
 		}
 
-		.comparisons-header {
+		.benchmarks-header {
 			@apply text-center mb-10;
 		}
 
@@ -453,10 +453,12 @@
 			@apply flex justify-center md:justify-end items-center gap-4;
 
 			.footer-icon-link {
-				@apply transition-transform hover:scale-110;
+				/* Base state: Muted Gray */
+				@apply text-gray-500 transition-all duration-300 hover:scale-110 hover:text-white;
 
-				.footer-icon {
-					@apply h-4 w-4 brightness-0 invert hover:opacity-70 transition-opacity;
+				/* Target the SVG injected by getIcon() */
+				svg {
+					@apply h-5 w-5 fill-current stroke-current;
 				}
 			}
 		}
@@ -622,11 +624,6 @@
 		overflow: hidden;
 	}
 
-	.footer-icon {
-		height: 18px;
-		width: 18px;
-	}
-
 	.service-icon {
 		height: 40px;
 		width: 40px;
@@ -711,6 +708,21 @@
 			.quote-highlight {
 				@apply text-brand-secondary font-bold not-italic;
 			}
+		}
+	}
+
+	/* Global Nav Link Style */
+	.nav-link {
+		@apply font-heading text-sm font-bold transition-all duration-300;
+
+		/* Footer specific color (gray to white) */
+		.footer-container & {
+			@apply text-gray-500 hover:text-white hover:scale-105;
+		}
+
+		/* Nav specific color (white to secondary) */
+		.nav-container & {
+			@apply text-white hover:text-brand-secondary hover:scale-110;
 		}
 	}
 }

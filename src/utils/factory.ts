@@ -358,3 +358,314 @@ export const renderLocation = (data: LocationData): string => {
             </div>
     `;
 };
+
+export const renderHistory = (data: any): string => {
+	const timelineHtml = data.timeline
+		.map(
+			(item: any) => `
+        <div class="timeline-date">${item.date}</div>
+        <div class="flex-gap-4">
+            <h3 class="text-xl">${item.heading}</h3>
+            <p class="timeline-body">${item.body}</p>
+        </div>
+    `,
+		)
+		.join("");
+
+	return `
+        <div class="flex-gap-12">
+            <div class="heading-border-l">
+                <h2 class="component-heading-md-title">${data.title}</h2>
+                <p class="component-heading-md-subtitle">${data.subtitle}</p>
+            </div>
+
+            <div class="timeline">
+                ${timelineHtml}
+            </div>
+        </div>
+    `;
+};
+
+export const renderMission = (data: any): string => {
+	const valuesHtml = data.values
+		.map(
+			(val: any) => `
+        <div class="mission-card">
+            <div class="mission-card-icon">
+                <i data-lucide="${val.icon}" class="w-10 h-10"></i>
+            </div>
+            <div class="flex-gap-2">
+                <h3 class="mission-card-title">${val.title}</h3>
+                <p class="mission-card-body">${val.body}</p>
+            </div>
+        </div>
+    `,
+		)
+		.join("");
+
+	return `
+        <div class="centered-container">
+            <div class="centered-heading">
+                <h2 class="component-heading-lg-title">${data.title}</h2>
+                <div class="heading-border-lg"></div>
+            </div>
+
+            <div class="quote-container">
+                <p class="quote-text">
+                    "${data.quote_main}
+                    <span class="quote-highlight">${data.quote_highlight}</span>
+                    ${data.quote_suffix}"
+                </p>
+            </div>
+
+            <div class="mission-statement-grid">
+                ${valuesHtml}
+            </div>
+        </div>
+    `;
+};
+
+export const renderTeam = (data: any): string => {
+	const socialsHtml = data.socials
+		.map(
+			(social: any) => `
+        <a href="${social.url}" target="_blank" class="highlight-icon">
+            <i data-lucide="${social.platform}" class="w-5 h-5"></i>
+        </a>
+    `,
+		)
+		.join("");
+
+	const bioHtml = data.bioParagraphs
+		.map(
+			(p: string) => `
+        <p>${p}</p>
+    `,
+		)
+		.join("");
+
+	return `
+        <div class="centered-container">
+            <div class="centered-heading">
+                <h2 class="component-heading-md-title tracking-tighter text-black">
+                    ${data.sectionTitle}
+                </h2>
+                <div class="heading-border"></div>
+            </div>
+
+            <div class="founder-grid">
+                <div class="founder-sidebar">
+                    <div class="headshot-wrapper">
+                        <div class="headshot-glow"></div>
+                        <div class="headshot-frame">
+                            <img src="${data.headshot}" alt="${data.name} - Founder of cbeens.dev" />
+                        </div>
+                        <div class="location-badge">${data.location}</div>
+                    </div>
+
+                    <div class="social-links">
+                        ${socialsHtml}
+                    </div>
+                </div>
+
+                <div class="founder-bio">
+                    <div class="bio-header">
+                        <h3>${data.name}</h3>
+                        <p>${data.title}</p>
+                    </div>
+
+                    <div class="bio-text">
+                        ${bioHtml}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+};
+
+export const renderBenchmarks = (data: any): string => {
+	const tableRows = data.rows
+		.map(
+			(row: any) => `
+        <tr>
+            <td>${row.metric}</td>
+            <td>${row.cbeens}</td>
+            <td>${row.agency}</td>
+        </tr>
+    `,
+		)
+		.join("");
+
+	return `
+        <div class="benchmarks-wrapper">
+            <div class="benchmarks-header">
+                <h2 class="component-heading-lg-title mb-4">
+                    ${data.titlePrefix}
+                    <span class="text-highlight-primary-italic">${data.titleHighlight}</span>
+                    ${data.titleSuffix}
+                </h2>
+                <p class="text-gray-600 italic">
+                    ${data.subtitle}
+                </p>
+            </div>
+
+            <div class="table-responsive-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            ${data.columns.map((col: string) => `<th>${col}</th>`).join("")}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${tableRows}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+};
+
+export const renderHighlights = (data: any): string => {
+	const highlightsHtml = data.highlights
+		.map(
+			(item: any) => `
+        <div class="highlight-border-l">
+            <h3 class="bold-text">${item.title}</h3>
+            <p class="subtle-text">${item.body}</p>
+        </div>
+    `,
+		)
+		.join("");
+
+	return `
+        <div class="component-heading-md">
+            <div class="flex-gap-4">
+                <h2 class="component-heading-md-title">
+                    ${data.titleMain}
+                    <span class="text-highlight-primary-italic">${data.titleHighlight}</span>
+                    ${data.titleSuffix}
+                </h2>
+                <p class="component-heading-md-subtitle">
+                    ${data.subtitle}
+                </p>
+            </div>
+
+            <div class="card-container">
+                ${highlightsHtml}
+            </div>
+        </div>
+    `;
+};
+
+export const renderProcess = (data: any): string => {
+	const stepsHtml = data.steps
+		.map(
+			(step: any) => `
+        <div class="process-card">
+            <div class="${step.iconClass}">
+                <i data-lucide="${step.icon}" class="w-8 h-8"></i>
+            </div>
+            <h3 class="process-card-heading">${step.heading}</h3>
+            <p class="process-card-body">${step.body}</p>
+        </div>
+    `,
+		)
+		.join("");
+
+	return `
+        <div class="component-heading-md">
+            <div class="flex-gap-2">
+                <h2 class="component-heading-md-title">
+                    ${data.titleMain}
+                    <span class="text-highlight-primary-italic">${data.titleHighlight}</span>
+                </h2>
+                <p class="component-heading-md-subtitle">
+                    ${data.subtitle}
+                </p>
+            </div>
+
+            <div class="process-grid">
+                ${stepsHtml}
+            </div>
+        </div>
+    `;
+};
+
+export const renderNav = (data: any): string => {
+	const linksHtml = data.links
+		.map((l: any) => `<a href="${l.url}" class="nav-link">${l.label}</a>`)
+		.join("");
+	const ctasHtml = data.ctas
+		.map(
+			(c: any) => `
+        <a href="${c.url}" class="${c.class}">
+            <i data-lucide="${c.icon}" class="nav-icon"></i>
+        </a>
+    `,
+		)
+		.join("");
+
+	return `
+            <a href="/" class="nav-logo-wrapper">
+                <img src="/src/assets/cbeens_logo_h.svg" alt="Logo" class="nav-logo" />
+            </a>
+            <div class="nav-right-side">
+                <div class="nav-desktop-links">${linksHtml}</div>
+                <button id="mobile-menu-toggle" class="nav-mobile-toggle"><i data-lucide="menu"></i></button>
+                <div class="nav-cta-icons">${ctasHtml}</div>
+            </div>
+    `;
+};
+
+export const renderFooter = (data: any): string => {
+	const currentYear = new Date().getFullYear();
+
+	const socialsHtml = data.socials
+		.map(
+			(s: any) => `
+        <a href="${s.url}" class="footer-icon-link" title="${s.title}" target="_blank" rel="noreferrer">
+            ${getIcon(s.slug)}
+        </a>
+    `,
+		)
+		.join("");
+
+	const legalHtml = data.legal
+		.map(
+			(l: any) => `
+        <a href="${l.url}" class="nav-link text-xs">${l.label}</a>
+    `,
+		)
+		.join("");
+
+	return `
+        <div class="footer-content-wrapper">
+            <div class="footer-main-grid">
+                <div class="flex justify-center md:justify-start md:order-1 order-3">
+                    <a href="https://cbeens.dev" class="text-xs nav-link">
+                        Built by <span class="font-bold uppercase">cbeens.dev</span>
+                    </a>
+                </div>
+
+                <div class="flex flex-col items-center gap-3 order-1 md:order-1 text-center">
+                    <img
+                        src="/src/assets/cbeens_logo_h.svg"
+                        alt="cbeens.dev Logo"
+                        class="h-6 brightness-0 invert"
+                    />
+                    <p class="text-[10px] text-gray-500 tracking-[0.2em] uppercase">
+                        &copy; ${currentYear} CBEENS.DEV ALL RIGHTS RESERVED
+                    </p>
+                </div>
+
+                <div class="footer-socials order-2 md:order-3">
+                    ${socialsHtml}
+                </div>
+            </div>
+
+            <nav class="footer-legal-nav">
+                ${legalHtml}
+            </nav>
+        </div>
+    `;
+};

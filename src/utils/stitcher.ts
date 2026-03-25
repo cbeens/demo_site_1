@@ -5,6 +5,14 @@ import {
 	renderTestimonial,
 	renderContact,
 	renderLocation,
+	renderHistory,
+	renderMission,
+	renderTeam,
+	renderBenchmarks,
+	renderHighlights,
+	renderProcess,
+	renderFooter,
+	renderNav,
 } from "./factory";
 
 // Map component IDs to their specific Factory functions
@@ -14,6 +22,14 @@ const componentMap = {
 	testimonial: renderTestimonial,
 	contact: renderContact,
 	location: renderLocation,
+	history: renderHistory,
+	mission: renderMission,
+	team: renderTeam,
+	benchmarks: renderBenchmarks,
+	highlights: renderHighlights,
+	process: renderProcess,
+	footer: renderFooter,
+	nav: renderNav,
 };
 
 export const stitchPage = async (
