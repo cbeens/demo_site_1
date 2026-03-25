@@ -86,6 +86,122 @@ export const renderTestimonial = (data: Schema.TestimonialData): string => `
     </div>
 `;
 
+export const renderBenchmarks = (data: Schema.BenchmarksData): string => `
+    <div class="benchmarks-wrapper">
+        <div class="benchmarks-header">
+            <h2 class="component-heading-lg-title mb-4">${data.titlePrefix} <span class="text-highlight-primary-italic">${data.titleHighlight}</span> ${data.titleSuffix}</h2>
+            <p class="text-gray-600 italic">${data.subtitle}</p>
+        </div>
+        <div class="table-responsive-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>${data.columns.map((col) => `<th>${col}</th>`).join("")}</tr>
+                </thead>
+                <tbody>
+                    ${data.rows
+						.map(
+							(row) => `
+                        <tr>
+                            <td>${row.metric}</td>
+                            <td>${row.cbeens}</td>
+                            <td>${row.agency}</td>
+                        </tr>
+                    `,
+						)
+						.join("")}
+                </tbody>
+            </table>
+        </div>
+    </div>
+`;
+
+export const renderContact = (data: Schema.ContactData): string => `
+    <div class="component-heading-md">
+        <div class="contact-heading">
+            <h2 class="component-heading-md-title">${data.titleMain} <span class="text-highlight-primary-italic">${data.titleHighlight}</span></h2>
+            <p class="component-heading-md-subtitle">${data.subtitle}</p>
+            <div class="heading-border"></div>
+        </div>
+        <div class="contact-form">
+            <div class="form-card">
+                <div class="flex-gap-2"><h3 class="form-heading">${data.formCardTitle}</h3><p class="subtle-text">${data.formCardSub}</p></div>
+                <div class="flex flex-col border-t border-black/10">
+                    ${data.faqs
+						.map(
+							(faq) => `
+                        <details class="group border-b border-black/10 py-4 cursor-pointer">
+                            <summary class="flex justify-between items-center list-none font-bold uppercase text-sm tracking-widest">
+                                <span>${faq.summary}</span>
+                                <span class="text-brand-primary transition-transform group-open:rotate-45">
+                                    <i data-lucide="plus" class="footer-icon"></i>
+                                </span>
+                            </summary>
+                            <p class="mt-4 text-sm text-gray-500 leading-relaxed">${faq.details}</p>
+                        </details>
+                    `,
+						)
+						.join("")}
+                </div>
+                <div class="flex-gap-2"><p class="subtle-text">${data.formFooter}</p></div>
+            </div>
+            <div class="p-8 md:p-12 lg:p-16 bg-gray-50 flex flex-col justify-center">
+                <form id="contact-form" data-client-id="${data.clientId}" class="flex flex-col gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                        <div class="flex flex-col gap-1">
+                            <label class="font-bold text-[10px] uppercase tracking-widest text-gray-400">Name</label>
+                            <input type="text" name="name" required placeholder="Full Name" class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none" />
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="font-bold text-[10px] uppercase tracking-widest text-gray-400">Email Address</label>
+                            <input type="email" name="email" required placeholder="email@domain.com" class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none" />
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="font-bold text-[10px] uppercase tracking-widest text-gray-400">Phone Number</label>
+                            <input type="tel" name="phone" placeholder="(512) 000-0000" class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none" />
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="font-bold text-[10px] uppercase tracking-widest text-gray-400">Inquiry Type</label>
+                            <select name="service" required class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none appearance-none cursor-pointer">
+                                <option value="" disabled selected>Select a service...</option>
+                                <option value="web-dev">Web Development</option>
+                                <option value="tech-mgmt">Tech Audits and Management</option>
+                                <option value="proj-dis">Project Discovery</option>
+                                <option value="custom">Custom Solutions</option>
+                                <option value="other">General Consulting / Other</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-1 md:col-span-2">
+                            <label class="font-bold text-[10px] uppercase tracking-widest text-gray-400">Project Description</label>
+                            <textarea name="message" rows="3" required placeholder="Brief description of your project and goals" class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" id="submit-btn" class="w-50 mx-auto btn-primary-icon transition-all active:scale-95">${data.submitText}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+`;
+
+export const renderLocation = (data: Schema.LocationData): string => `
+    <div class="map-wrapper"><div id="map"></div><div class="map-badge">${data.mapBadge}</div></div>
+    <div class="contact-details">
+        <div class="contact-heading-block">
+            <h2 class="text-4xl md:text-5xl uppercase leading-[0.9] tracking-tighter">${data.titleMain} <br /><span class="text-highlight-primary-italic">${data.titleHighlight}</span></h2>
+            <p class="text-gray-600 max-w-md text-sm md:text-base">${data.description}</p>
+        </div>
+        <div class="contact-links-list">
+            ${data.contactRows
+				.map((row) => {
+					const iconBox = `<span class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${row.iconPath}</svg></span>`;
+					return row.isHours
+						? `<div class="contact-row">${iconBox}<div class="hours-content">${row.hoursLines?.map((l) => `<p>${l}</p>`).join("")}</div></div>`
+						: `<a href="${row.href}" class="contact-row">${iconBox}<span class="contact-text">${row.text}</span></a>`;
+				})
+				.join("")}
+        </div>
+    </div>
+`;
+
 export const renderHistory = (data: Schema.HistoryData): string => `
     <div class="flex-gap-12">
         <div class="heading-border-l">
@@ -160,23 +276,6 @@ export const renderTeam = (data: Schema.TeamData): string => `
     </div>
 `;
 
-export const renderBenchmarks = (data: Schema.BenchmarksData): string => `
-    <div class="benchmarks-wrapper">
-        <div class="benchmarks-header">
-            <h2 class="component-heading-lg-title mb-4">${data.titlePrefix} <span class="text-highlight-primary-italic">${data.titleHighlight}</span> ${data.titleSuffix}</h2>
-            <p class="text-gray-600 italic">${data.subtitle}</p>
-        </div>
-        <div class="table-responsive-wrapper">
-            <table class="comparison-table">
-                <thead><tr>${data.columns.map((col) => `<th>${col}</th>`).join("")}</tr></thead>
-                <tbody>
-                    ${data.rows.map((row) => `<tr><td>${row.metric}</td><td>${row.cbeens}</td><td>${row.agency}</td></tr>`).join("")}
-                </tbody>
-            </table>
-        </div>
-    </div>
-`;
-
 export const renderHighlights = (data: Schema.HighlightsData): string => `
     <div class="component-heading-md">
         <div class="flex-gap-4">
@@ -206,72 +305,6 @@ export const renderProcess = (data: Schema.ProcessData): string => `
                 </div>
             `,
 				)
-				.join("")}
-        </div>
-    </div>
-`;
-
-export const renderContact = (data: Schema.ContactData): string => `
-    <div class="component-heading-md">
-        <div class="contact-heading">
-            <h2 class="component-heading-md-title">${data.titleMain} <span class="text-highlight-primary-italic">${data.titleHighlight}</span></h2>
-            <p class="component-heading-md-subtitle">${data.subtitle}</p>
-            <div class="heading-border"></div>
-        </div>
-        <div class="contact-form">
-            <div class="form-card">
-                <div class="flex-gap-2"><h3 class="form-heading">${data.formCardTitle}</h3><p class="subtle-text">${data.formCardSub}</p></div>
-                <div class="flex flex-col border-t border-black/10">
-                    ${data.faqs
-						.map(
-							(faq) => `
-                        <details class="group border-b border-black/10 py-4 cursor-pointer">
-                            <summary class="flex justify-between items-center list-none font-bold uppercase text-sm tracking-widest">
-                                <span>${faq.summary}</span>
-                                <span class="text-brand-primary transition-transform group-open:rotate-45"><i data-lucide="plus" class="footer-icon"></i></span>
-                            </summary>
-                            <p class="mt-4 text-sm text-gray-500 leading-relaxed">${faq.details}</p>
-                        </details>
-                    `,
-						)
-						.join("")}
-                </div>
-                <div class="flex-gap-2"><p class="subtle-text">${data.formFooter}</p></div>
-            </div>
-            <div class="p-8 md:p-12 lg:p-16 bg-gray-50 flex flex-col justify-center">
-                <form id="contact-form" data-client-id="${data.clientId}" class="flex flex-col gap-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                        <div class="flex flex-col gap-1">
-                            <label class="font-bold text-[10px] uppercase tracking-widest text-gray-400">Name</label>
-                            <input type="text" name="name" required placeholder="Full Name" class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none" />
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <label class="font-bold text-[10px] uppercase tracking-widest text-gray-400">Email Address</label>
-                            <input type="email" name="email" required placeholder="email@domain.com" class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none" />
-                        </div>
-                    </div>
-                    <button type="submit" id="submit-btn" class="w-50 mx-auto btn-primary-icon transition-all active:scale-95">${data.submitText}</button>
-                </form>
-            </div>
-        </div>
-    </div>
-`;
-
-export const renderLocation = (data: Schema.LocationData): string => `
-    <div class="map-wrapper"><div id="map"></div><div class="map-badge">${data.mapBadge}</div></div>
-    <div class="contact-details">
-        <div class="contact-heading-block">
-            <h2 class="text-4xl md:text-5xl uppercase leading-[0.9] tracking-tighter">${data.titleMain} <br /><span class="text-highlight-primary-italic">${data.titleHighlight}</span></h2>
-            <p class="text-gray-600 max-w-md text-sm md:text-base">${data.description}</p>
-        </div>
-        <div class="contact-links-list">
-            ${data.contactRows
-				.map((row) => {
-					const iconBox = `<span class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${row.iconPath}</svg></span>`;
-					return row.isHours
-						? `<div class="contact-row">${iconBox}<div class="hours-content">${row.hoursLines?.map((l) => `<p>${l}</p>`).join("")}</div></div>`
-						: `<a href="${row.href}" class="contact-row">${iconBox}<span class="contact-text">${row.text}</span></a>`;
-				})
 				.join("")}
         </div>
     </div>

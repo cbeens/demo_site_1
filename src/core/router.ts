@@ -58,14 +58,12 @@ export async function router(): Promise<void> {
 	if (navShell && navShell.children.length === 0) {
 		const navData = await fetchFileData("nav.json");
 		const html = renderNav(navData);
-		console.log("Injecting Nav HTML:", html); // DEBUG 1
 		navShell.innerHTML = html;
 	}
 
 	if (footerShell && footerShell.children.length === 0) {
 		const footerData = await fetchFileData("footer.json");
 		const html = renderFooter(footerData);
-		console.log("Injecting Footer HTML:", html); // DEBUG 2
 		footerShell.innerHTML = html;
 	}
 
@@ -113,6 +111,10 @@ export async function router(): Promise<void> {
 	// Initialize scripts (Map, Lucide, etc.)
 	const token = import.meta.env.VITE_MAPBOX_TOKEN;
 	if (document.getElementById("map")) initializeMap(token);
+
+	if (window.lucide) {
+		window.lucide.createIcons();
+	}
 
 	window.scrollTo(0, 0);
 	document.dispatchEvent(new CustomEvent("page-loaded"));
