@@ -1,7 +1,7 @@
 import "./style.css";
 import { FormHandler } from "./utils/forms";
 import { scrollToForm, initBackToTop } from "./utils/interactions";
-import { initRouter } from "./utils/router";
+import { initRouter } from "./core/router";
 import { setupMobileMenu } from "./utils/mobileMenu";
 
 window.addEventListener("DOMContentLoaded", async () => {

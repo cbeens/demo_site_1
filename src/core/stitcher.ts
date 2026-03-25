@@ -13,7 +13,7 @@ import {
 	renderProcess,
 	renderFooter,
 	renderNav,
-} from "./factory";
+} from "../factories/factory";
 
 // Map component IDs to their specific Factory functions
 const componentMap = {

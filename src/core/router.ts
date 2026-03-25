@@ -4,14 +4,14 @@
 
 import fm from "front-matter";
 import { loadComponent } from "./componentLoader";
-import { initializeMap } from "./map";
+import { initializeMap } from "../utils/map";
 import { stitchPage } from "./stitcher";
-import { renderNav, renderFooter } from "./factory";
+import { renderNav, renderFooter, renderErrorPage } from "../factories/factory";
 
 const routes: { [key: string]: string } = {
-	"/": "./src/pages/home.html",
-	"/about": "./src/pages/about.html",
-	"/services": "./src/pages/services.html",
+	"/": "./src/pages/home/home.html",
+	"/about": "./src/pages/about/about.html",
+	"/services": "./src/pages/services/services.html",
 };
 
 const fetchFileData = async (path: string) => {
@@ -22,7 +22,33 @@ const fetchFileData = async (path: string) => {
 
 export async function router(): Promise<void> {
 	const path: string = window.location.pathname;
-	const route: string = routes[path] || routes["/"];
+	const route: string = routes[path];
+
+	if (!route) {
+		// --- 404 FALLBACK LOGIC ---
+
+		// A. Inject the Shells first (so they aren't empty)
+		const navShell = document.getElementById("nav");
+		const footerShell = document.getElementById("footer");
+
+		if (navShell && navShell.children.length === 0) {
+			const navData = await fetchFileData("nav.json");
+			navShell.innerHTML = renderNav(navData);
+		}
+		if (footerShell && footerShell.children.length === 0) {
+			const footerData = await fetchFileData("footer.json");
+			footerShell.innerHTML = renderFooter(footerData);
+		}
+
+		const appShell = document.getElementById("app");
+		if (appShell) appShell.innerHTML = renderErrorPage();
+
+		// C. Refresh icons for the Nav/Footer/Error page
+		if (window.lucide) window.lucide.createIcons();
+
+		document.title = "404 - Not Found | cbeens.dev";
+		return;
+	}
 
 	// 1. Load the Page Shell
 	// --- GLOBAL SHELL INJECTION ---
@@ -50,10 +76,10 @@ export async function router(): Promise<void> {
 
 	const componentTasks: Promise<any>[] = [];
 	const mdMap: { [key: string]: string } = {
-		"/": "/src/pages/home.md",
-		"/index.html": "/src/pages/home.md",
-		"/about": "/src/pages/about.md",
-		"/services": "/src/pages/services.md",
+		"/": "/src/pages/home/home.md",
+		"/index.html": "/src/pages/home/home.md",
+		"/about": "/src/pages/about/about.md",
+		"/services": "/src/pages/services/services.md",
 	};
 
 	const mdPath = mdMap[path] || mdMap["/"];
