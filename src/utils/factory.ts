@@ -595,25 +595,46 @@ export const renderNav = (data: any): string => {
 	const linksHtml = data.links
 		.map((l: any) => `<a href="${l.url}" class="nav-link">${l.label}</a>`)
 		.join("");
+
 	const ctasHtml = data.ctas
 		.map(
 			(c: any) => `
-        <a href="${c.url}" class="${c.class}">
-            <i data-lucide="${c.icon}" class="nav-icon"></i>
-        </a>
-    `,
+            <a href="${c.url}" class="${c.class}">
+                <i data-lucide="${c.icon}" class="nav-icon"></i>
+            </a>
+        `,
 		)
 		.join("");
 
 	return `
-            <a href="/" class="nav-logo-wrapper">
-                <img src="/src/assets/cbeens_logo_h.svg" alt="Logo" class="nav-logo" />
-            </a>
-            <div class="nav-right-side">
-                <div class="nav-desktop-links">${linksHtml}</div>
-                <button id="mobile-menu-toggle" class="nav-mobile-toggle"><i data-lucide="menu"></i></button>
-                <div class="nav-cta-icons">${ctasHtml}</div>
+        <a href="/" class="nav-logo-wrapper">
+            <img src="/src/assets/cbeens_logo_h.svg" alt="Logo" class="nav-logo" />
+        </a>
+
+        <div class="nav-right-side">
+            <div class="nav-desktop-links">${linksHtml}</div>
+            
+            <button id="mobile-menu-toggle" class="nav-mobile-toggle">
+                <i data-lucide="menu"></i>
+            </button>
+
+            <div class="nav-cta-icons">${ctasHtml}</div>
+        </div>
+
+        <div id="mobile-drawer" class="mobile-drawer translate-x-full">
+            <div class="drawer-content">
+                ${data.links.map((l: any) => `<a href="${l.url}" class="drawer-link">${l.label}</a>`).join("")}
+                
+                <div class="drawer-cta-wrapper">
+                    <a href="tel:+15120000000" class="btn-primary flex items-center justify-center gap-3">
+                        <i data-lucide="phone"></i> Call Now
+                    </a>
+                    <a href="mailto:info@cbeens.dev" class="btn-secondary flex items-center justify-center gap-3">
+                        <i data-lucide="mail"></i> Email Us
+                    </a>
+                </div>
             </div>
+        </div>
     `;
 };
 

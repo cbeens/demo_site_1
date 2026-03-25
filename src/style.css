@@ -503,7 +503,7 @@
 
 		/* Mobile Drawer */
 		.mobile-drawer {
-			@apply fixed inset-0 top-[64px] bg-white z-40 translate-x-full transition-transform duration-300 ease-in-out lg:hidden;
+			@apply fixed inset-0 top-21 bg-white z-40 translate-x-full transition-transform duration-300 ease-in-out lg:hidden;
 
 			&.is-open {
 				@apply translate-x-0;
@@ -514,7 +514,7 @@
 
 				/* Link styles within the drawer */
 				.drawer-link {
-					@apply text-2xl font-heading font-bold p-6 text-black border-b border-black/10 hover:text-brand-primary hover:bg-brand-primary/5 transition-colors;
+					@apply text-xl font-heading font-bold p-4 text-black border-b border-black/10 hover:text-brand-primary hover:bg-brand-primary/5 transition-colors;
 				}
 
 				.drawer-cta-wrapper {
@@ -552,7 +552,7 @@
 
 				/* The shared row style for all 3 items */
 				.contact-row {
-					@apply flex items-start gap-4 border-b border-black/5 pb-4 transition-all duration-300;
+					@apply flex items-center gap-4 border-b border-black/5 pb-4 transition-all duration-300;
 
 					/* 1. Row Hover: Change row border */
 					&:hover {
