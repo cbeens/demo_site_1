@@ -116,6 +116,31 @@ export async function router(): Promise<void> {
 		window.lucide.createIcons();
 	}
 
+	const loadDisplay = document.getElementById("load-time-display");
+	if (loadDisplay) {
+		const [entry] = performance.getEntriesByType("navigation") as any;
+		if (entry && entry.duration > 0) {
+			loadDisplay.textContent = `${Math.round(entry.duration)}ms`;
+		}
+	}
+
+	const revealObserver = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add("active");
+					revealObserver.unobserve(entry.target); // Stop watching once it's visible
+				}
+			});
+		},
+		{ threshold: 0.15 },
+	);
+
+	// 2. Attach to all elements with the .reveal class
+	document
+		.querySelectorAll(".reveal")
+		.forEach((el) => revealObserver.observe(el));
+
 	window.scrollTo(0, 0);
 	document.dispatchEvent(new CustomEvent("page-loaded"));
 }
