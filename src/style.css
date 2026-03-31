@@ -47,7 +47,7 @@
 
 	/* Full-bleed section (Map, Hero, etc) */
 	.section-full {
-		@apply w-full border-t border-black;
+		@apply w-full border-black;
 	}
 
 	/* Color Modifiers */
@@ -66,54 +66,89 @@
 
 	.btn-primary {
 		@apply bg-brand-primary border-2 border-transparent text-white font-bold px-12 py-5 rounded-full text-lg 
-               transition-all duration-300 shadow-lg hover:scale-105 hover:bg-brand-primary/90 hover:shadow-xl;
+               transition-all duration-300 shadow-lg hover:scale-105 hover:bg-brand-primary/90 hover:shadow-xl cursor-pointer;
 	}
 
 	.btn-secondary {
 		@apply bg-white text-brand-primary border-2 border-brand-primary font-bold px-12 py-5 rounded-full text-lg 
-               transition-all duration-300 shadow-lg hover:scale-105 hover:bg-brand-primary/90 hover:text-white hover:shadow-xl;
+               transition-all duration-300 shadow-lg hover:scale-105 hover:bg-brand-primary/90 hover:text-white hover:shadow-xl cursor-pointer;
 	}
 
 	/* Circular Icon Buttons (Nav & Back to top) */
 	.btn-icon-primary {
 		@apply flex items-center justify-center bg-brand-primary text-white p-3 rounded-full transition-all 
-               hover:scale-110 hover:bg-brand-primary/90 shadow-md;
+               hover:scale-110 hover:bg-brand-primary/90 shadow-md cursor-pointer;
 	}
 
 	.btn-icon-secondary {
 		@apply flex items-center justify-center bg-white text-brand-primary border-2 border-brand-primary p-3 rounded-full 
-               transition-all hover:scale-110 hover:bg-brand-primary/90 hover:text-white shadow-md;
+               transition-all hover:scale-110 hover:bg-brand-primary/90 hover:text-white shadow-md cursor-pointer;
 	}
 
 	/* --- COMPONENT GUTS --- */
 
 	.service-card {
-		@apply border-2 border-black p-8 flex flex-col gap-6 transition-all duration-300;
-	}
-	.service-card:hover {
-		@apply bg-black text-white;
-	}
-	.service-card:hover .service-icon {
-		@apply text-brand-secondary;
-	}
-	.service-card:hover .service-footer {
-		@apply text-brand-secondary;
-	}
-	.service-card:hover .service-body {
-		@apply text-gray-400;
+		@apply border-2 border-black p-8 flex flex-col gap-6 transition-all duration-300 bg-white cursor-pointer;
+
+		/* THE FIX: Native CSS nesting for children */
+
+		/* Children default styles (no need for inline text-black/gray utilities) */
+		.service-icon {
+			@apply text-brand-primary transition-colors duration-300;
+		}
+		.service-title,
+		.service-price {
+			@apply text-xl text-black transition-colors duration-300;
+		}
+		.service-body {
+			@apply text-gray-500 transition-colors duration-300;
+		}
+		.service-footer {
+			@apply text-brand-primary transition-colors duration-300;
+		}
+
+		/* Parent Hover State */
+		&:hover {
+			@apply bg-black text-white;
+			cursor: default;
+
+			/* Children React to Parent Hover */
+			.service-icon,
+			.service-footer {
+				@apply text-brand-secondary;
+			}
+			.service-title,
+			.service-price {
+				@apply text-white;
+			}
+			.service-body {
+				@apply text-gray-400;
+			}
+		}
 	}
 
 	/* Back to top specific */
 	#back-to-top {
-		@apply fixed bottom-8 right-8 z-50;
+		@apply fixed bottom-8 right-8 z-50 cursor-pointer;
 	}
 
 	/* --- ANIMATION --- */
 	.reveal {
 		@apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+
+		/* 1. Target the highlight text specifically inside a non-active reveal */
+		.text-highlight {
+			@apply inline-block opacity-0 translate-x-12 transition-all duration-1000 delay-150 ease-out;
+		}
 	}
+
 	.reveal.active {
 		@apply opacity-100 translate-y-0;
+
+		/* 2. When the section activates, fly the highlight in from the right */
+		.text-highlight {
+			@apply opacity-100 translate-x-0;
+		}
 	}
 
 	/* Utilities */
@@ -133,5 +168,25 @@
 	}
 	.footer-icon-link svg {
 		@apply w-4 h-4;
+	}
+
+	/* Chat Window States */
+	#chat-window.active {
+		@apply translate-y-0 opacity-100 pointer-events-auto;
+	}
+
+	/* Message Bubbles */
+	.user-msg {
+		@apply self-end bg-black text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] text-sm shadow-md;
+	}
+
+	.ai-msg {
+		@apply self-start bg-white border border-black/10 text-black p-3 rounded-2xl rounded-tl-none max-w-[85%] text-sm shadow-sm;
+		border-left: 3px solid var(--color-brand-primary);
+	}
+
+	/* Dougg's "Thinking" Pulse */
+	.dougg-thinking {
+		@apply animate-pulse text-brand-primary text-[10px] uppercase font-bold tracking-widest mt-1 ml-2;
 	}
 }

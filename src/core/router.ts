@@ -6,7 +6,7 @@ import fm from "front-matter";
 import { loadComponent } from "./componentLoader";
 import { initializeMap } from "../utils/map";
 import { stitchPage } from "./stitcher";
-import { renderNav, renderFooter, renderErrorPage } from "../factories/factory";
+import { renderNav, renderFooter, renderErrorPage } from "./factory";
 
 const routes: { [key: string]: string } = {
 	"/": "./src/pages/home/home.html",
