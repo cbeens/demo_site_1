@@ -48,69 +48,20 @@ export const scrollToForm = (e?: Event) => {
 };
 
 export const initChat = () => {
-	const trigger = document.getElementById("chat-trigger");
-	const close = document.getElementById("chat-close");
-	const window = document.getElementById("chat-window");
-	const form = document.getElementById("chat-form") as HTMLFormElement;
-	const input = document.getElementById("chat-input") as HTMLInputElement;
-	const messages = document.getElementById("chat-messages");
+	document.addEventListener("click", (e) => {
+		const target = e.target as HTMLElement;
+		const trigger = target.closest("#chat-trigger");
+		const closeBtn = target.closest("#chat-close");
+		const chatWindow = document.getElementById("chat-window");
 
-	// Toggle Window
-	trigger?.addEventListener("click", () =>
-		window?.classList.toggle("active"),
-	);
-	close?.addEventListener("click", () => window?.classList.remove("active"));
-
-	form?.addEventListener("submit", async (e) => {
-		e.preventDefault();
-		const text = input.value.trim();
-		if (!text) return;
-
-		// 1. User Message
-		appendMessage("user", text);
-		input.value = "";
-
-		// 2. Dougg Thinking State
-		const thinkingId = addThinkingIndicator();
-
-		try {
-			const response = await fetch("http://localhost:5678/webhook/chat", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ message: text }),
-			});
-			const data = await response.json();
-
-			removeThinkingIndicator(thinkingId);
-			appendMessage("ai", data.output || data.message);
-		} catch (err) {
-			removeThinkingIndicator(thinkingId);
-			appendMessage(
-				"ai",
-				"Signal lost. Planet US is currently unreachable. (Check Docker)",
-			);
+		if (trigger) {
+			chatWindow?.classList.add("active");
+			trigger.classList.add("hidden-state"); // Hides the button
+		} else if (closeBtn) {
+			chatWindow?.classList.remove("active");
+			document
+				.getElementById("chat-trigger")
+				?.classList.remove("hidden-state"); // Shows it back
 		}
 	});
-
-	function appendMessage(role: "user" | "ai", text: string) {
-		const div = document.createElement("div");
-		div.className = role === "user" ? "user-msg" : "ai-msg";
-		div.innerText = text;
-		messages?.appendChild(div);
-		messages!.scrollTop = messages!.scrollHeight;
-	}
-
-	function addThinkingIndicator() {
-		const id = "thinking-" + Date.now();
-		const div = document.createElement("div");
-		div.id = id;
-		div.className = "dougg-thinking";
-		div.innerText = "Dougg is processing...";
-		messages?.appendChild(div);
-		return id;
-	}
-
-	function removeThinkingIndicator(id: string) {
-		document.getElementById(id)?.remove();
-	}
 };
