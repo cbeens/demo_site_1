@@ -1,0 +1,29 @@
+{
+	"socials": [
+		{
+			"slug": "github",
+			"url": "https://github.com/cbeens",
+			"title": "GitHub"
+		},
+		{
+			"slug": "linkedin",
+			"url": "https://linkedin.com/company/cbeens-dev",
+			"title": "LinkedIn"
+		},
+		{ "slug": "twitter-x", "url": "https://x.com/cbeensdev", "title": "X" },
+		{
+			"slug": "instagram",
+			"url": "https://instagram.com/cbeens.dev",
+			"title": "Instagram"
+		},
+		{
+			"slug": "youtube",
+			"url": "https://youtube.com/@cbeensdev",
+			"title": "YouTube"
+		}
+	],
+	"legal": [
+		{ "label": "Privacy", "url": "/privacy" },
+		{ "label": "Terms", "url": "/terms" }
+	]
+}

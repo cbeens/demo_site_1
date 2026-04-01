@@ -1,0 +1,188 @@
+@import "tailwindcss";
+@custom-variant hover (&:hover);
+
+@theme {
+	--color-brand-primary: #7844b3;
+	--color-brand-secondary: #99b344;
+	--color-black: #000000;
+	--color-white: #ffffff;
+	--spacing-section-py: 4rem;
+	--font-heading: "Space Grotesk", sans-serif;
+	--font-body: "Hanken Grotesk", "Inter", sans-serif;
+}
+
+@layer base {
+	body {
+		@apply font-body bg-white text-black;
+	}
+	h1,
+	h2,
+	h3,
+	h4 {
+		@apply font-heading font-bold;
+	}
+	#app {
+		@apply flex flex-col flex-1;
+	}
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+@layer components {
+	/* --- SECTION SHELLS --- */
+	.section-standard {
+		@apply w-full border-black px-8;
+		padding-top: var(--spacing-section-py);
+		padding-bottom: var(--spacing-section-py);
+	}
+	.section-full {
+		@apply w-full border-black;
+	}
+	.section-gray {
+		@apply bg-gray-100;
+	}
+	.section-black {
+		@apply bg-black text-white border-brand-primary/20;
+	}
+	.container-max {
+		@apply mx-auto max-w-7xl;
+	}
+
+	/* --- BUTTONS & ATOMS --- */
+	.btn-primary {
+		@apply bg-brand-primary border-2 border-transparent text-white font-bold px-12 py-5 rounded-full text-lg 
+               transition-all duration-300 shadow-lg hover:scale-105 hover:bg-brand-primary/90 hover:shadow-xl cursor-pointer;
+	}
+	.btn-secondary {
+		@apply bg-white text-brand-primary border-2 border-brand-primary font-bold px-12 py-5 rounded-full text-lg 
+               transition-all duration-300 shadow-lg hover:scale-105 hover:bg-brand-primary/90 hover:text-white hover:shadow-xl cursor-pointer;
+	}
+	.btn-icon-primary {
+		@apply flex items-center justify-center bg-brand-primary text-white p-3 rounded-full transition-all 
+               hover:scale-110 hover:bg-brand-primary/90 shadow-md cursor-pointer;
+	}
+	/* RESTORED: btn-icon-secondary */
+	.btn-icon-secondary {
+		@apply flex items-center justify-center bg-white text-brand-primary border-2 border-brand-primary p-3 rounded-full 
+               transition-all hover:scale-110 hover:bg-brand-primary/90 hover:text-white shadow-md cursor-pointer;
+	}
+
+	/* --- SERVICE CARDS --- */
+	.service-card {
+		@apply border-2 border-black p-8 flex flex-col gap-6 transition-all duration-300 bg-white cursor-pointer;
+		.service-icon {
+			@apply text-brand-primary transition-colors duration-300;
+		}
+		.service-title,
+		.service-price {
+			@apply text-xl text-black transition-colors duration-300;
+		}
+		.service-body {
+			@apply text-gray-500 transition-colors duration-300;
+		}
+		.service-footer {
+			@apply text-brand-primary transition-colors duration-300;
+		}
+		&:hover {
+			@apply bg-black text-white;
+			cursor: default;
+			.service-icon,
+			.service-footer {
+				@apply text-brand-secondary;
+			}
+			.service-title,
+			.service-price {
+				@apply text-white;
+			}
+			.service-body {
+				@apply text-gray-400;
+			}
+		}
+	}
+
+	/* --- FIXED UI POSITIONING --- */
+	#back-to-top {
+		position: fixed !important;
+		bottom: 2rem !important;
+		right: 2rem !important;
+		z-index: 100;
+		@apply transition-all duration-300;
+	}
+
+	#chat-trigger {
+		position: fixed !important;
+		bottom: 2rem !important;
+		right: 6rem !important;
+		z-index: 100;
+		@apply shadow-2xl transition-transform active:scale-95;
+	}
+
+	/* Hide the trigger button when chat is active */
+	#chat-trigger.hidden-state {
+		@apply opacity-0 pointer-events-none scale-90;
+	}
+
+	#chat-window {
+		position: fixed !important;
+		bottom: 6rem !important; /* Positioned above the trigger */
+		right: 6rem !important; /* Vertically aligned with trigger */
+		z-index: 9999 !important;
+		width: 350px;
+		height: 480px;
+		@apply bg-white border-2 border-black flex flex-col overflow-hidden;
+		@apply transition-all duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+		opacity: 0;
+		transform: translateY(20px);
+		pointer-events: none;
+	}
+
+	#chat-window.active {
+		opacity: 1 !important;
+		transform: translateY(0) !important;
+		pointer-events: auto !important;
+	}
+
+	/* --- CHAT INTERNAL STYLES --- */
+	.user-msg {
+		@apply self-end bg-black text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] text-sm shadow-md;
+	}
+	.ai-msg {
+		@apply self-start bg-white border border-black/10 text-black p-3 rounded-2xl rounded-tl-none max-w-[85%] text-sm shadow-sm;
+		border-left: 3px solid var(--color-brand-primary);
+	}
+	.dougg-thinking {
+		@apply animate-pulse text-brand-primary text-[10px] uppercase font-bold tracking-widest mt-1 ml-2;
+	}
+
+	/* --- REVEAL ANIMATIONS --- */
+	.reveal {
+		@apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+		.text-highlight {
+			@apply inline-block opacity-0 translate-x-12 transition-all duration-1000 delay-150 ease-out;
+		}
+	}
+	.reveal.active {
+		@apply opacity-100 translate-y-0;
+		.text-highlight {
+			@apply opacity-100 translate-x-0;
+		}
+	}
+
+	/* --- UTILITIES --- */
+	.text-highlight {
+		@apply text-brand-primary italic;
+	}
+	.heading-border {
+		@apply h-1 w-24 bg-brand-secondary mt-2;
+	}
+	.heading-border-l {
+		@apply border-l-4 border-brand-secondary pl-6;
+	}
+	.footer-icon-link {
+		@apply text-gray-500 transition-all duration-300 hover:scale-110 hover:text-white;
+		svg {
+			@apply w-4 h-4;
+		}
+	}
+}

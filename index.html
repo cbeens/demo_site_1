@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/src/assets/cbeens_dougg_icon.svg"
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title></title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;700&family=IBM+Plex+Mono:wght@700&family=Space+Grotesk:wght@300;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link
+			href="https://api.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<header id="nav" class="nav-container"></header>
+
+		<main id="app"></main>
+
+		<footer id="footer" class="footer-container"></footer>
+
+		<button
+			id="back-to-top"
+			class="btn-icon-primary fixed bottom-8 right-8 z-50 hidden transition-all active:scale-90"
+		>
+			<i data-lucide="arrow-up"></i>
+		</button>
+
+		<script src="https://unpkg.com/lucide@latest"></script>
+		<script type="module" src="/src/main.ts"></script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+{
+	"titlePrefix": "The",
+	"titleHighlight": "Performance",
+	"titleSuffix": "Gap",
+	"subtitle": "Why Austin businesses choose cbeens.dev over cookie-cutter solutions.",
+	"columns": ["Performance Metric", "cbeens.dev", "Standard Agency"],
+	"rows": [
+		{
+			"metric": "Load Time",
+			"cbeens": "< 500ms",
+			"agency": "3.5s - 7s+"
+		},
+		{
+			"metric": "SEO Score",
+			"cbeens": "98-100 (Native)",
+			"agency": "60-80 (Plugin Dependent)"
+		},
+		{
+			"metric": "Ownership",
+			"cbeens": "Full Intellectual Property",
+			"agency": "Proprietary CMS Lock-in"
+		},
+		{
+			"metric": "Support",
+			"cbeens": "Direct Founder Access",
+			"agency": "Ticket Queues / Outsourced"
+		}
+	]
+}

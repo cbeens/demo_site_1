@@ -1,0 +1,45 @@
+{
+	"brandSubtitle": "Powered by brands you can trust",
+	"brands": [
+		{
+			"name": "Cloudflare",
+			"slug": "cloudflare",
+			"url": "https://cloudflare.com",
+			"colorClass": "text-[#F38020]"
+		},
+		{
+			"name": "GitHub",
+			"slug": "github",
+			"url": "https://github.com",
+			"colorClass": "text-white"
+		},
+		{
+			"name": "Docker",
+			"slug": "docker",
+			"url": "https://www.docker.com/",
+			"colorClass": "text-[#2496ED]"
+		},
+		{
+			"name": "DigitalOcean",
+			"slug": "digitalocean",
+			"url": "https://digitalocean.com",
+			"colorClass": "text-[#0080FF]"
+		}
+	],
+	"quote": "This system transformed our digital presence. The speed and reliability are unmatched in the current market.",
+	"author": "Jane Doe",
+	"authorTitle": "CEO, TECHSTART GLOBAL",
+	"stats": [
+		{
+			"label": "Uptime",
+			"value": "99.9%",
+			"color": "text-brand-secondary"
+		},
+		{
+			"label": "Actual Load Time",
+			"value": "--ms",
+			"color": "text-brand-primary",
+			"id": "load-time-display"
+		}
+	]
+}

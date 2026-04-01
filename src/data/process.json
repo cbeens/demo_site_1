@@ -1,0 +1,31 @@
+{
+	"titleMain": "Your Stack,",
+	"titleHighlight": "Your Way",
+	"subtitle": "System Design // Rapid Implementation",
+	"steps": [
+		{
+			"icon": "search",
+			"iconClass": "process-card-icon-primary",
+			"heading": "Audit & Discovery",
+			"body": "We identify technical debt and SEO bottlenecks in your current presence to build a roadmap for sovereign growth."
+		},
+		{
+			"icon": "code-2",
+			"iconClass": "process-card-icon-secondary",
+			"heading": "Custom Development",
+			"body": "Hand-crafted development using our Vanilla JS engine. We bypass modern framework bloat to deliver pure, high-performance logic."
+		},
+		{
+			"icon": "cloud",
+			"iconClass": "process-card-icon-primary",
+			"heading": "Cloud Infrastructure",
+			"body": "Deployment via DigitalOcean and Cloudflare. We set up your professional environment for 99.9% uptime."
+		},
+		{
+			"icon": "gauge",
+			"iconClass": "process-card-icon-secondary",
+			"heading": "Made for Speed",
+			"body": "Final performance tuning and global distribution. Your site goes live at the speed of the Austin market."
+		}
+	]
+}

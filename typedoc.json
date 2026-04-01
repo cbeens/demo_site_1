@@ -1,0 +1,15 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"entryPoints": ["src/main.ts"],
+	"out": "docs",
+	"name": "cbeens.dev",
+	"includeVersion": true,
+	"excludeExternals": true,
+	"githubPages": false,
+	"plugin": [],
+	"cleanOutputDir": true,
+	"validation": {
+		"notExported": true,
+		"invalidLink": true
+	}
+}
