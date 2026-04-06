@@ -1,11 +1,12 @@
 import "./style.css";
 import { FormHandler } from "./utils/forms";
-import { scrollToForm, initBackToTop, initChat } from "./utils/interactions"; // Cleaned up import
+import { scrollToForm, initBackToTop, initChat } from "./utils/interactions";
 import { initRouter } from "./core/router";
 import { setupMobileMenu } from "./utils/mobileMenu";
-import { renderChat } from "./core/factory";
+// import { renderChat } from "./core/factory";
 
 window.addEventListener("DOMContentLoaded", async () => {
+	/*** START CHAT INITIALIZATION 
 	// 1. INJECT & INIT GLOBAL UI FIRST (Independent of Router)
 	// We do this before the 'await' so Dougg is ready instantly.
 	const chatContainer = document.createElement("div");
@@ -15,14 +16,13 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 	// Initialize listeners immediately
 	initChat();
+	END CHAT INITIALIZATION ***/
 
 	// 2. Fire the Router (The heavy lifting)
 	await initRouter();
 
 	// 3. Initialize Form Handler & Icons on Page Load
 	document.addEventListener("page-loaded", () => {
-		// Re-run Lucide for the new chat icons and routed icons
-		// @ts-ignore
 		if (window.lucide) window.lucide.createIcons();
 
 		if (document.getElementById("contact-form")) {

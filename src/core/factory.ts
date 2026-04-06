@@ -19,8 +19,7 @@ export const renderHero = (data: Schema.HeroData): string => `
                 </span>
             </div>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="${data.primary_cta.link}" class="btn-primary">${data.primary_cta.text}</a>
-                <a href="${data.secondary_cta.link}" class="btn-secondary">${data.secondary_cta.text}</a>
+                <a href="${data.primary_cta.url}" class="btn-primary">${data.primary_cta.text}</a>
             </div>
         </div>
     </div>
@@ -224,7 +223,7 @@ export const renderLocation = (data: Schema.LocationData): string => `
                             ${iconBox}<div class="flex flex-col gap-1 text-sm uppercase tracking-tight text-gray-500">${row.hoursLines?.map((l) => `<p>${l}</p>`).join("")}</div>
                         </div>`
 							: `
-                        <a href="${row.href}" class="flex items-center gap-4 border-b border-black/5 pb-4 transition-all duration-300 group hover:border-brand-primary">
+                        <a href="${row.url}" class="flex items-center gap-4 border-b border-black/5 pb-4 transition-all duration-300 group hover:border-brand-primary">
                             ${iconBox}<span class="font-bold text-base md:text-lg">${row.text}</span>
                         </a>`;
 					})
@@ -379,10 +378,10 @@ export const renderNav = (data: Schema.NavData): string => `
             </div>
             <button id="mobile-menu-toggle" class="lg:hidden cursor-pointer p-2 text-white hover:text-brand-secondary transition-transform hover:scale-110"><i data-lucide="menu"></i></button>
             <div class="hidden md:flex items-center gap-4">
-                ${data.ctas.map((c) => `<a href="${c.link}" class="${c.class === "btn-primary-icon" ? "btn-icon-primary" : "btn-icon-secondary"}"><i data-lucide="${c.icon}" class="w-5 h-5"></i></a>`).join("")}
+                ${data.ctas.map((c) => `<a href="${c.url}" class="${c.class === "btn-primary-icon" ? "btn-icon-primary" : "btn-icon-secondary"}"><i data-lucide="${c.icon}" class="w-5 h-5"></i></a>`).join("")}
             </div>
         </div>
-        <div id="mobile-drawer" class="fixed inset-0 top-[84px] bg-white z-40 translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+        <div id="mobile-drawer" class="fixed inset-0 top-21 bg-white z-40 translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
             <div class="flex flex-col p-8 gap-2">
                 ${data.links.map((l) => `<a href="${l.url}" class="text-xl font-heading font-bold p-4 text-black border-b border-black/10 hover:text-brand-primary hover:bg-brand-primary/5 transition-colors">${l.label}</a>`).join("")}
                 <div class="flex flex-col gap-4 mt-8 md:hidden">
@@ -458,7 +457,7 @@ export const renderChat = (): string => `
                     <p class="text-[10px] text-brand-secondary uppercase tracking-tighter">WE from planet US</p>
                 </div>
             </div>
-            <button id="chat-close" class="hover:text-brand-secondary transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <button id="chat-close" class="hover:text-brand-secondary hover:scale-110 hover:cursor-pointer transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
         </div>
 
         <div id="chat-messages" class="flex-1 overflow-y-auto p-4 flex flex-col gap-4 bg-gray-50/50">
@@ -475,3 +474,48 @@ export const renderChat = (): string => `
         </form>
     </div>
 `;
+
+export const renderRichText = (html: string): string => {
+	const content = typeof html === "string" ? html : (html as any).html;
+
+	// Create a unique ID so we can target this specific instance
+	const instanceId = `cms-${Math.random().toString(36).substr(2, 9)}`;
+
+	return `
+        <section class="py-20 px-8 bg-white overflow-hidden">
+            <div class="container-max max-w-4xl mx-auto">
+                <div id="${instanceId}" class="rich-text-shadow-host"></div>
+                
+                <script>
+                    (function() {
+                        const host = document.getElementById('${instanceId}');
+                        if (!host || host.shadowRoot) return;
+                        
+                        const shadow = host.attachShadow({mode: 'open'});
+                        const container = document.createElement('div');
+                        
+                        // Force basic styles inside the shadow wall
+                        container.style.color = '#1a1a1a';
+                        container.style.fontFamily = 'Arial, sans-serif';
+                        container.style.lineHeight = '1.6';
+                        
+                        // Inject the HTML and a localized style override
+                        container.innerHTML = \`
+                            <style>
+                                a { color: #3030F1 !important; text-decoration: underline; }
+                                [data-custom-class='body'], [data-custom-class='body'] * { 
+                                    color: #1a1a1a !important; 
+                                    background: transparent !important; 
+                                }
+                                h1, h2, h3 { color: #000 !important; margin-top: 1.5rem; }
+                            </style>
+                            ${content.replace(/`/g, "\\`")}
+                        \`;
+                        
+                        shadow.appendChild(container);
+                    })();
+                </script>
+            </div>
+        </section>
+    `;
+};

@@ -1,6 +1,6 @@
 export interface CTA {
 	text: string;
-	link: string;
+	url: string;
 	class?: string;
 	icon?: string;
 }
@@ -67,7 +67,7 @@ export interface LocationData {
 	titleHighlight: string;
 	description: string;
 	contactRows: {
-		href?: string;
+		url?: string;
 		iconPath: string;
 		text?: string;
 		isHours?: boolean;

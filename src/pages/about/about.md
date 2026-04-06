@@ -1,5 +1,5 @@
 ---
-title: "cbeens.dev - About"
+title: "About"
 components:
     - id: "history"
       data_source: "history.json"
