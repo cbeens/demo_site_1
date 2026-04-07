@@ -25,8 +25,12 @@ window.addEventListener("DOMContentLoaded", async () => {
 	document.addEventListener("page-loaded", () => {
 		if (window.lucide) window.lucide.createIcons();
 
+		// The dynamic API endpoint from your .env files
+		const apiBase = import.meta.env.VITE_API_URL;
+
+		// Handle the specific contact form
 		if (document.getElementById("contact-form")) {
-			new FormHandler("contact-form", "http://localhost:3000/v1/leads");
+			new FormHandler("contact-form", `${apiBase}/v1/leads`);
 		}
 	});
 

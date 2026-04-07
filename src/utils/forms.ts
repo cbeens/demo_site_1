@@ -1,5 +1,5 @@
 /**
- * A reusable, Type-Safe form handler .
+ * A reusable, Type-Safe form handler.
  */
 export class FormHandler {
 	private formElement: HTMLFormElement;
@@ -12,28 +12,29 @@ export class FormHandler {
 	}
 
 	private init() {
-		this.formElement?.addEventListener("submit", async (e) => {
+		if (!this.formElement) return;
+
+		this.formElement.addEventListener("submit", async (e) => {
 			e.preventDefault();
 			await this.handleSubmit();
 		});
 
-		const phoneInput = this.formElement?.querySelector(
+		const phoneInput = this.formElement.querySelector(
 			'input[name="phone"]',
 		) as HTMLInputElement;
 		if (phoneInput) {
-			addEventListener("input", (e) => {
+			phoneInput.addEventListener("input", (e) => {
 				const target = e.target as HTMLInputElement;
 				target.value = formatPhoneNumber(target.value);
 			});
 		}
 	}
 
-	// Inside your FormHandler Class
 	private async handleSubmit() {
 		const formData = new FormData(this.formElement);
 		const payload = Object.fromEntries(formData.entries());
 
-		// 1. Get the Client ID from the form's data attribute (The Sovereign Way)
+		// Priority: 1. Attribute on HTML, 2. Env Var, 3. Hardcoded Default
 		const clientId =
 			this.formElement.getAttribute("data-client-id") ||
 			import.meta.env.VITE_CLIENT_ID ||
@@ -42,7 +43,9 @@ export class FormHandler {
 		this.setLoading(true);
 
 		try {
-			console.log(`📡 Transmitting Lead for [${clientId}]...`);
+			console.log(
+				`📡 Transmitting Lead for [${clientId}] to ${this.endpoint}...`,
+			);
 
 			const response = await fetch(this.endpoint, {
 				method: "POST",
@@ -58,17 +61,18 @@ export class FormHandler {
 			});
 
 			if (response.ok) {
-				console.log(
-					"✅ Transmission Successful:",
-					await response.json(),
-				);
+				console.log("✅ Transmission Successful");
 				this.formElement.reset();
-				// Handle success UI here later
+				// Optional: Trigger a custom event for success UI
+				this.formElement.dispatchEvent(new CustomEvent("form-success"));
 			} else {
-				throw new Error("Relay rejected the payload");
+				throw new Error(`Server returned ${response.status}`);
 			}
 		} catch (error) {
 			console.error("❌ Transmission Failed:", error);
+			alert(
+				"Transmission failed. Please try again or email info@cbeens.dev",
+			);
 		} finally {
 			this.setLoading(false);
 		}
@@ -80,10 +84,7 @@ export class FormHandler {
 		) as HTMLButtonElement;
 		if (btn) {
 			btn.disabled = isLoading;
-			// Using textContent and keeping it uppercase to match your brand
 			btn.textContent = isLoading ? "TRANSMITTING..." : "SUBMIT";
-
-			// Optional: Add a class for visual feedback
 			isLoading
 				? btn.classList.add("opacity-50", "cursor-not-allowed")
 				: btn.classList.remove("opacity-50", "cursor-not-allowed");
