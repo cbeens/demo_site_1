@@ -5,11 +5,11 @@
 	"title_bottom": "Website.",
 	"badge_text": "Get yours today!",
 	"primary_cta": {
-		"text": "CALL NOW",
-		"link": "tel:+15120000000"
+		"text": "EMAIL US",
+		"url": "mailto:info@cbeens.dev"
 	},
 	"secondary_cta": {
-		"text": "EMAIL US",
-		"link": "mailto:info@cbeens.dev"
+		"text": "CALL NOW",
+		"url": "tel:+15120000000"
 	}
 }

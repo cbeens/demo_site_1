@@ -23,7 +23,7 @@
 		}
 	],
 	"legal": [
-		{ "label": "Privacy", "url": "/privacy" },
-		{ "label": "Terms", "url": "/terms" }
+		{ "label": "Privacy", "url": "/privacy.html" },
+		{ "label": "Terms", "url": "/terms.html" }
 	]
 }

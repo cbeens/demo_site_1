@@ -1,5 +1,5 @@
 ---
-title: "cbeens.dev - Services"
+title: "Services"
 description: "Explore our service tiers from Business Basic to Custom Enterprise solutions. Built for speed, scale, and conversion."
 layout: "main-template"
 permalink: "/services"

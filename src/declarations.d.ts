@@ -18,6 +18,7 @@ interface ImportMeta {
 }
 
 interface ImportMetaEnv {
+	readonly VITE_API_URL: any;
 	readonly VITE_MAPBOX_TOKEN: string;
 	readonly VITE_CLIENT_ID: string;
 }

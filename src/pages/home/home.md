@@ -1,5 +1,5 @@
 ---
-title: "cbeens.dev - Home"
+title: "Home"
 description: "Your friendly neighborhood virtual CTO."
 layout: "main-template"
 permalink: "/"

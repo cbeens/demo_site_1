@@ -13,6 +13,7 @@ import {
 	renderProcess,
 	renderFooter,
 	renderNav,
+	renderRichText,
 } from "./factory";
 
 // Map component IDs to their specific Factory functions
