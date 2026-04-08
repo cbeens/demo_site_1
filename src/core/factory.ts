@@ -179,11 +179,11 @@ export const renderContact = (data: Schema.ContactData): string => `
                             <label class="font-bold text-[10px] uppercase tracking-widest text-gray-400">Inquiry Type</label>
                             <select name="service" required class="border-b border-black bg-transparent p-2 text-sm focus:border-brand-primary focus:outline-none appearance-none cursor-pointer">
                                 <option value="" disabled selected>Select a service...</option>
-                                <option value="web-dev">Web Development</option>
-                                <option value="tech-mgmt">Tech Audits and Management</option>
-                                <option value="proj-dis">Project Discovery</option>
+                                <option value="web development">Web Development</option>
+                                <option value="tech audits">Tech Audits and Management</option>
+                                <option value="project discovery">Project Discovery</option>
                                 <option value="custom">Custom Solutions</option>
-                                <option value="other">General Consulting / Other</option>
+                                <option value="general">General Consulting / Other</option>
                             </select>
                         </div>
                         <div class="flex flex-col gap-1 md:col-span-2">
@@ -406,7 +406,7 @@ export const renderFooter = (data: Schema.FooterData): string => {
                     </div>
                     <div class="flex flex-col items-center gap-3 order-1 md:order-1 text-center">
                         <img src="/src/assets/cbeens_logo_h.svg" alt="Logo" class="h-6 brightness-0 invert" />
-                        <p class="text-[10px] text-gray-500 tracking-[0.2em] uppercase">&copy; ${currentYear} CBEENS.DEV ALL RIGHTS RESERVED</p>
+                        <p class="text-[10px] text-gray-500 tracking-[0.2em] uppercase">&copy; ${currentYear} CBEENS.DEV, ALL RIGHTS RESERVED</p>
                     </div>
                     <div class="flex justify-center md:justify-end items-center gap-4 order-2 md:order-3">
                         ${data.socials
