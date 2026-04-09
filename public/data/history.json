@@ -1,0 +1,16 @@
+{
+	"title": "History",
+	"subtitle": "Est. 2026 // Austin, TX",
+	"timeline": [
+		{
+			"date": "OCT 25 - APR 26",
+			"heading": "Building cbeens.dev",
+			"body": "After several years working in the software industry, for both startups and large enterprises, I decided to take the leap and start my own company. I spent months building the cbeens.dev brand, digital infrastructure, and website framework; officially launching in April 2026."
+		},
+		{
+			"date": "TODAY",
+			"heading": "Continuing to Build",
+			"body": "I continue to build and improve the cbeens.dev platform, proving that high-end software doesn't have to be out of reach for small businesses or solopreneurs."
+		}
+	]
+}

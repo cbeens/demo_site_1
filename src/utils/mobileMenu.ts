@@ -1,3 +1,7 @@
+/**
+ * Initializes the mobile menu toggle and auto-close behavior.
+ * Supports opening and closing the drawer and updating toggle icons.
+ */
 export function setupMobileMenu() {
 	const body = document.body;
 

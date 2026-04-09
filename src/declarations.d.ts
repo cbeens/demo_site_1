@@ -1,3 +1,7 @@
+/**
+ * Global module declarations used by the Vite application.
+ * Includes CSS/SVG/PNG imports and window/env augmentation.
+ */
 declare module "*.css";
 declare module "*.svg";
 declare module "*.png";
@@ -8,7 +12,9 @@ interface Window {
 	};
 }
 
-// This handles the Vite environment variables specifically
+/**
+ * Augmented ImportMeta exposed by Vite.
+ */
 interface ImportMeta {
 	readonly env: ImportMetaEnv;
 	readonly glob: (

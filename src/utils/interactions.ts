@@ -1,3 +1,7 @@
+/**
+ * Initializes the back-to-top button behavior.
+ * Shows the button after the page scroll threshold is passed.
+ */
 export const initBackToTop = () => {
 	const btn = document.getElementById("back-to-top");
 	if (!btn) return;
@@ -47,6 +51,10 @@ export const scrollToForm = (e?: Event) => {
 	}
 };
 
+/**
+ * Sets up chat window open/close event handling.
+ * Uses delegated clicks to support dynamically injected UI.
+ */
 export const initChat = () => {
 	document.addEventListener("click", (e) => {
 		const target = e.target as HTMLElement;

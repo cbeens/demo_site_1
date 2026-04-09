@@ -1,10 +1,14 @@
 import "./style.css";
 import { FormHandler } from "./utils/forms";
-import { scrollToForm, initBackToTop, initChat } from "./utils/interactions";
+import { scrollToForm, initBackToTop } from "./utils/interactions";
 import { initRouter } from "./core/router";
 import { setupMobileMenu } from "./utils/mobileMenu";
 // import { renderChat } from "./core/factory";
 
+/**
+ * Application bootstrap for the Dougg UI frontend.
+ * Initializes SPA routing, form handling, and global UI interactions.
+ */
 window.addEventListener("DOMContentLoaded", async () => {
 	/*** START CHAT INITIALIZATION 
 	// 1. INJECT & INIT GLOBAL UI FIRST (Independent of Router)
@@ -30,7 +34,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 		// Handle the specific contact form
 		if (document.getElementById("contact-form")) {
-			new FormHandler("contact-form", `${apiBase}/v1/leads`);
+			new FormHandler("contact-form", `${apiBase}/webhook/v1/leads`);
 		}
 	});
 

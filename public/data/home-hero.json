@@ -1,0 +1,15 @@
+{
+	"bgImage": "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=60&w=1920&fm=webp",
+	"titleTop": "This is a",
+	"titleHighlight": "Lightning Fast",
+	"titleBottom": "Website.",
+	"badgeText": "Get yours today!",
+	"primaryCta": {
+		"text": "EMAIL US",
+		"url": "mailto:info@cbeens.dev"
+	},
+	"secondaryCta": {
+		"text": "CALL NOW",
+		"url": "tel:+15120000000"
+	}
+}

@@ -1,9 +1,9 @@
 {
 	"titleMain": "Let's Get",
 	"titleHighlight": "Started",
-	"subtitle": "How can <span class=\"text-highlight-primary-bold\">cbeens.dev</span> supercharge your next project?",
+	"subtitle": "How can cbeens.dev supercharge your next project?",
 	"formCardTitle": "What can we do for you?",
-	"formCardSub": "We don't just build websites, we build digital infrastructure.",
+	"formCardSub": "We don't just build websites, we build and manage digital infrastructure to empower your business.",
 	"faqs": [
 		{
 			"summary": "Lightning Fast Performance",
@@ -18,7 +18,5 @@
 			"details": "Custom-built solutions with a personal touch. We work closely with your team to understand your unique needs and deliver a product that exceeds your expectations."
 		}
 	],
-	"formFooter": "For more information or to discuss your next project, contact us today!",
-	"clientId": "cbeens-dev",
 	"submitText": "Submit"
 }

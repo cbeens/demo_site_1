@@ -13,10 +13,12 @@ import {
 	renderProcess,
 	renderFooter,
 	renderNav,
-	renderRichText,
 } from "./factory";
 
-// Map component IDs to their specific Factory functions
+/**
+ * Component factory lookup table.
+ * Maps markdown component IDs to the matching render function.
+ */
 const componentMap = {
 	hero: renderHero,
 	"service-grid": renderServiceGrid,
@@ -33,6 +35,12 @@ const componentMap = {
 	nav: renderNav,
 };
 
+/**
+ * Stitches a page component into its rendered HTML output.
+ * @param comp - Component metadata and optional inline data.
+ * @param fetchFileData - Loader function for fetching JSON assets.
+ * @returns Rendered HTML string for the component.
+ */
 export const stitchPage = async (
 	comp: any, // Pass the single component object from the router loop
 	fetchFileData: (path: string) => Promise<any>,

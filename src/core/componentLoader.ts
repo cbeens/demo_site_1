@@ -1,8 +1,9 @@
-// src/utils/componentLoader.ts
-
 /**
- * Enhanced Loader: Can load from a path (old way)
- * OR direct HTML string (new Sovereign way)
+ * Component loader for the SPA shell.
+ * Can either fetch a component file path or inject raw HTML directly.
+ * @param id - DOM element ID where content will be mounted.
+ * @param content - URL path or raw HTML string.
+ * @param isPath - When true, content is treated as a fetch path.
  */
 export async function loadComponent(
 	id: string,

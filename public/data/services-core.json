@@ -1,0 +1,24 @@
+{
+	"headingMain": "Core",
+	"headingHighlight": "Services",
+	"cards": [
+		{
+			"title": "Web Development",
+			"icon": "monitor",
+			"body": "Delivering high-performance, lightning-fast, scalable web applications and high-conversion landing pages. Built with the latest technologies to ensure your online presence is fast and reliable.",
+			"footer": "Business Sites / Web Apps / AI Solutions"
+		},
+		{
+			"title": "Tech-Stack Management",
+			"icon": "cpu",
+			"body": "Expert management of your tech stack, ensuring seamless integration and optimal performance. Using a blend of modern tools and best practices, including cloud infrastructure and AI orchestration.",
+			"footer": "Software / Infrastructure / Data / Security"
+		},
+		{
+			"title": "Custom Solutions",
+			"icon": "code",
+			"body": "Tailored technology solutions designed to meet your unique business needs. Whether it's a custom web application, automation tool, or combination of specialized software, you can be sure your tech can handle your demands.",
+			"footer": "Research / Development / Optimization"
+		}
+	]
+}

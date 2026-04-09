@@ -1,5 +1,12 @@
 import mapboxgl from "mapbox-gl";
 
+/**
+ * Initializes Mapbox GL on the page and renders a custom marker.
+ * @param token - Mapbox access token from environment.
+ * @param lng - Longitude coordinate for the marker.
+ * @param lat - Latitude coordinate for the marker.
+ * @returns The created Mapbox map instance or void when no container exists.
+ */
 export function initializeMap(
 	token: string,
 	lng = -97.7431,
@@ -21,7 +28,7 @@ export function initializeMap(
 	// Create a DOM element for the custom icon
 	const el = document.createElement("div");
 	el.className = "marker";
-	el.style.backgroundImage = "url(/src/assets/cbeens_dougg_icon.svg)";
+	el.style.backgroundImage = "url(/assets/cbeens_dougg_icon.svg)";
 	el.style.width = "40px";
 	el.style.height = "40px";
 	el.style.backgroundSize = "100%";
