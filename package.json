@@ -1,25 +1,28 @@
 {
-	"name": "lightning-fast-landing_demo",
-	"private": true,
-	"version": "0.0.0",
-	"type": "module",
-	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"preview": "vite preview"
-	},
-	"devDependencies": {
-		"@tailwindcss/postcss": "^4.2.1",
-		"autoprefixer": "^10.4.27",
-		"postcss": "^8.5.8",
-		"tailwindcss": "^4.2.1",
-		"typedoc": "^0.28.17",
-		"typescript": "^5.9.3",
-		"vite": "^7.3.1"
-	},
-	"dependencies": {
-		"@tailwindcss/vite": "^4.2.1",
-		"front-matter": "^4.0.2",
-		"mapbox-gl": "^3.19.1"
-	}
+  "name": "lightning-fast-landing_demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.31.2",
+    "@tailwindcss/postcss": "^4.2.1",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.1",
+    "typedoc": "^0.28.17",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "wrangler": "^4.81.1"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "front-matter": "^4.0.2",
+    "mapbox-gl": "^3.19.1"
+  }
 }
