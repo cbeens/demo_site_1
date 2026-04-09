@@ -16,7 +16,7 @@ export function setupMobileMenu() {
 
 		if (isOpening) {
 			drawer.classList.remove("translate-x-full");
-			drawer.classList.add("is-open"); // If your CSS uses this class
+			drawer.classList.add("is-open");
 			body.classList.add("overflow-hidden");
 			toggle.innerHTML = `<i data-lucide="x"></i>`;
 		} else {
@@ -29,15 +29,22 @@ export function setupMobileMenu() {
 		window.lucide?.createIcons();
 	});
 
-	// Auto-close when clicking a link
+	// Auto-close when clicking any link inside the mobile drawer
 	body.addEventListener("click", (e) => {
 		const target = e.target as HTMLElement;
-		if (target.closest(".drawer-link")) {
+
+		// FIX: Look for any anchor tag inside the mobile-drawer instead of a specific class
+		if (target.closest("#mobile-drawer a")) {
 			const drawer = document.getElementById("mobile-drawer");
 			const toggle = document.getElementById("mobile-menu-toggle");
 
-			drawer?.classList.add("translate-x-full");
+			if (drawer) {
+				drawer.classList.add("translate-x-full");
+				drawer.classList.remove("is-open");
+			}
+
 			body.classList.remove("overflow-hidden");
+
 			if (toggle) {
 				toggle.innerHTML = `<i data-lucide="menu"></i>`;
 				window.lucide?.createIcons();

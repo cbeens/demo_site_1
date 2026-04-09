@@ -1,27 +1,28 @@
 # dougg_ui
 
-A lightweight, fast frontend framework for building modern web applications and landing pages using HTML, JavaScript, TypeScript, and TailwindCSS. Optimized for speed, security, and developer experience.
+A lightweight, fast frontend site framework built with HTML, JavaScript, TypeScript, and TailwindCSS. Designed for performance, simplicity, and secure content delivery.
 
 ## Features
 
-- **Component-Based Architecture**: Modular components for heroes, service grids, testimonials, navigation, and more
-- **SPA Routing**: Client-side routing for multiple pages (home, about, services)
-- **Form Handling**: Built-in form validation and submission with API integration
-- **Responsive Design**: Mobile-first design with TailwindCSS
-- **Icon Integration**: Lucide icons with automatic rendering
-- **Data-Driven**: Content managed through JSON files
-- **TypeScript Support**: Full type safety with TypeScript
-- **Vite Build Tool**: Fast development and optimized production builds
-- **Documentation**: Auto-generated docs with TypeDoc
+- **Component-Based Rendering**: Data-driven UI sections rendered from typed factories
+- **SPA Routing**: Client-side navigation for home, about, services, and static pages
+- **Data-Driven Content**: Page markup and content loaded from `public/pages` and `public/data`
+- **Responsive Design**: Mobile-first styling with TailwindCSS
+- **Form Handling**: Contact form submission and phone formatting built in
+- **Map Integration**: Mapbox GL support for location sections
+- **Icon System**: Dynamic SVG icon registry with Lucide support
+- **TypeScript + Vite**: Fast development experience and build pipeline
+- **Auto-generated Docs**: TypeDoc output for API reference
 
 ## Technologies
 
-- **Vite** - Build tool and dev server
-- **TypeScript** - Type-safe JavaScript
-- **TailwindCSS v4** - Utility-first CSS framework
+- **Vite** - Dev server and production bundler
+- **TypeScript** - Static typing for your app logic
+- **TailwindCSS v4** - Utility-first styling
 - **PostCSS** - CSS processing
-- **Mapbox GL** - Interactive maps
-- **Front Matter** - Markdown parsing
+- **Mapbox GL** - Interactive map rendering
+- **Front Matter** - Markdown metadata parsing
+- **TypeDoc** - Documentation generation
 
 ## Installation
 
@@ -38,41 +39,50 @@ A lightweight, fast frontend framework for building modern web applications and 
     npm install
     ```
 
-3. Start the development server:
+3. Start the dev server:
 
     ```bash
     npm run dev
     ```
 
-4. Open your browser to `http://localhost:5173`
+4. Open your browser at `http://localhost:5173`
 
 ## Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+- `npm run dev` - Run the Vite development server
+- `npm run build` - Build the production bundle
+- `npm run preview` - Preview the production build
+- `npx typedoc` - Generate API documentation
 
 ## Project Structure
 
 ```
-src/
-├── core/           # Core framework files
-│   ├── factory.ts      # Component rendering functions
-│   ├── router.ts       # SPA routing logic
-│   ├── componentLoader.ts # Dynamic component loading
-│   └── ...
-├── pages/          # Page templates
-│   ├── home/
-│   ├── about/
-│   └── services/
-├── data/           # JSON data files
-├── types/          # TypeScript type definitions
-├── utils/          # Utility functions
-└── assets/         # Static assets
+.
+├── public/                 # Static page templates, JSON content, and assets
+│   ├── pages/
+│   └── data/
+├── src/                    # Application source code
+│   ├── core/               # Router, page stitching, and render factories
+│   ├── utils/              # Form, map, menu, and interaction utilities
+│   ├── types/              # Shared TypeScript interfaces
+│   ├── declarations.d.ts   # Global module/environment declarations
+│   ├── main.ts             # App bootstrap
+│   └── style.css           # Global CSS imports
+├── docs/                   # Generated TypeDoc output
+├── package.json
+├── tsconfig.json
+├── typedoc.json
+└── vite.config.ts
 ```
 
 ## Usage
 
-The framework uses a component factory pattern where data from JSON files is passed to rendering functions to generate HTML. Pages are stitched together using the router, which loads HTML templates and injects dynamic content.
+This repo loads page templates and content from `public/pages` and `public/data`. The SPA router in `src/core/router.ts` stitches content into the UI shell, then initializes interactions, icons, and optional Mapbox sections.
 
-For detailed API documentation, see the [docs](./docs/) folder or run TypeDoc.
+To regenerate documentation, run:
+
+```bash
+npx typedoc
+```
+
+Then open the generated files in `docs/`.
