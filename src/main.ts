@@ -1,6 +1,6 @@
 import "./style.css";
 import { FormHandler } from "./utils/forms";
-import { scrollToForm, initBackToTop, initChat } from "./utils/interactions";
+import { scrollToForm, initBackToTop } from "./utils/interactions";
 import { initRouter } from "./core/router";
 import { setupMobileMenu } from "./utils/mobileMenu";
 // import { renderChat } from "./core/factory";

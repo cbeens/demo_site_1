@@ -1,15 +1,15 @@
 {
 	"$schema": "https://typedoc.org/schema.json",
-	"entryPoints": ["src/main.ts"],
+	"entryPointStrategy": "expand",
+	"entryPoints": ["src"],
 	"out": "docs",
-	"name": "cbeens.dev",
+	"name": "dougg-ui",
 	"includeVersion": true,
 	"excludeExternals": true,
 	"githubPages": false,
-	"plugin": [],
+	"readme": "README.md",
 	"cleanOutputDir": true,
 	"validation": {
-		"notExported": true,
 		"invalidLink": true
 	}
 }
