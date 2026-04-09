@@ -526,7 +526,7 @@ export const renderChat = (): string => `
         <div class="bg-black text-white p-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center overflow-hidden border border-brand-secondary/30">
-                    <img src="/src/assets/cbeens_dougg_icon.svg" alt="Dougg" class="w-6 h-6" />
+                    <img src="/assets/cbeens_dougg_icon.svg" alt="Dougg" class="w-6 h-6" />
                 </div>
                 <div>
                     <p class="text-xs font-black uppercase tracking-widest leading-none">Dougg</p>
