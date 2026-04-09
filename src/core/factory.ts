@@ -1,30 +1,44 @@
+/**
+ * Factory functions for rendering UI components as HTML strings.
+ * Each function returns a fully composed section from provided schema data.
+ */
 import { getIcon } from "./iconRegistry";
 import * as Schema from "../types/components";
 
+/**
+ * Renders the hero section with a background image and CTA.
+ * @param data - Hero section data.
+ * @returns HTML string for the hero section.
+ */
 export const renderHero = (data: Schema.HeroData): string => `
     <div class="relative min-h-[calc(100dvh-84px)] flex flex-col items-center justify-center px-8 py-20 text-center overflow-hidden">
         <div class="hero-background absolute inset-0 z-0">
-            <img src="${data.bg_image}" alt="Background" class="w-full h-full object-cover opacity-15" />
+            <img src="${data.bgImage}" alt="Background" class="w-full h-full object-cover opacity-15" />
             <div class="hero-bg-overlay absolute inset-0 bg-linear-to-b from-white via-transparent to-white"></div>
         </div>
         <div class="hero-content relative z-10 max-w-4xl mx-auto">
             <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8">
-                ${data.title_top} <br /><span class="text-highlight">${data.title_highlight}</span><br />${data.title_bottom}
+                ${data.titleTop} <br /><span class="text-highlight">${data.titleHighlight}</span><br />${data.titleBottom}
             </h1>
             <div class="hero-badge inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-secondary/30 bg-brand-secondary/5 mb-8">
-                <span class="text-xs font-bold tracking-widest text-brand-secondary">${data.badge_text}</span>
+                <span class="text-xs font-bold tracking-widest text-brand-secondary">${data.badgeText}</span>
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-secondary opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-secondary"></span>
                 </span>
             </div>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="${data.primary_cta.url}" class="btn-primary">${data.primary_cta.text}</a>
+                <a href="${data.primaryCta.url}" class="btn-primary">${data.primaryCta.text}</a>
             </div>
         </div>
     </div>
 `;
 
+/**
+ * Renders a grid of service cards.
+ * @param data - Service grid content.
+ * @returns HTML string for the service section.
+ */
 export const renderServiceGrid = (data: Schema.ServiceGridData): string => `
     <div class="container-max">
         <div class="mb-12">
@@ -55,6 +69,11 @@ export const renderServiceGrid = (data: Schema.ServiceGridData): string => `
     </div>
 `;
 
+/**
+ * Renders the testimonial section with brand logos and quotes.
+ * @param data - Testimonial section content.
+ * @returns HTML string for testimonials.
+ */
 export const renderTestimonial = (data: Schema.TestimonialData): string => `
     <div class="container-max flex flex-col gap-16">
         <div class="flex flex-col items-center gap-8">
@@ -96,6 +115,11 @@ export const renderTestimonial = (data: Schema.TestimonialData): string => `
     </div>
 `;
 
+/**
+ * Renders the benchmark comparison table section.
+ * @param data - Benchmark table definition.
+ * @returns HTML string for the benchmark section.
+ */
 export const renderBenchmarks = (data: Schema.BenchmarksData): string => `
     <div class="container-max">
         <div class="text-center mb-10">
@@ -131,6 +155,11 @@ export const renderBenchmarks = (data: Schema.BenchmarksData): string => `
     </div>
 `;
 
+/**
+ * Renders the contact form section with FAQs.
+ * @param data - Contact page data.
+ * @returns HTML string for the contact section.
+ */
 export const renderContact = (data: Schema.ContactData): string => `
     <div class="container-max">
         <div class="mb-12">
@@ -198,6 +227,11 @@ export const renderContact = (data: Schema.ContactData): string => `
     </div>
 `;
 
+/**
+ * Renders the location section with embedded map and contact rows.
+ * @param data - Location section content.
+ * @returns HTML string for the location section.
+ */
 export const renderLocation = (data: Schema.LocationData): string => `
     <div class="border-t grid grid-cols-1 lg:grid-cols-2 w-full h-full">
         <div class="relative w-full h-100 lg:h-full min-h-100 bg-gray-100 border-b lg:border-b-0 lg:border-r border-black">
@@ -233,6 +267,11 @@ export const renderLocation = (data: Schema.LocationData): string => `
     </div>
 `;
 
+/**
+ * Renders the corporate history timeline.
+ * @param data - History timeline content.
+ * @returns HTML string for the history section.
+ */
 export const renderHistory = (data: Schema.HistoryData): string => `
     <div class="container-max flex flex-col gap-12">
         <div class="heading-border-l">
@@ -255,6 +294,11 @@ export const renderHistory = (data: Schema.HistoryData): string => `
     </div>
 `;
 
+/**
+ * Renders the mission/value statement section.
+ * @param data - Mission section content.
+ * @returns HTML string for the mission section.
+ */
 export const renderMission = (data: Schema.MissionData): string => `
     <div class="container-max flex flex-col gap-10">
         <div class="flex flex-col items-center text-center gap-2">
@@ -263,7 +307,7 @@ export const renderMission = (data: Schema.MissionData): string => `
         </div>
         <div class="max-w-4xl mx-auto text-center">
             <p class="text-2xl italic leading-relaxed text-gray-400">
-                "${data.quote_main} <span class="text-brand-secondary font-bold not-italic">${data.quote_highlight}</span> ${data.quote_suffix}"
+                "${data.quoteMain} <span class="text-brand-secondary font-bold not-italic">${data.quoteHighlight}</span> ${data.quoteSuffix}"
             </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-white">
@@ -284,6 +328,11 @@ export const renderMission = (data: Schema.MissionData): string => `
     </div>
 `;
 
+/**
+ * Renders the team member profile section.
+ * @param data - Team section data.
+ * @returns HTML string for the team section.
+ */
 export const renderTeam = (data: Schema.TeamData): string => `
     <div class="container-max flex flex-col gap-10">
         <div class="flex flex-col items-center text-center gap-2">
@@ -324,6 +373,11 @@ export const renderTeam = (data: Schema.TeamData): string => `
     </div>
 `;
 
+/**
+ * Renders the highlights section with feature cards.
+ * @param data - Highlights section content.
+ * @returns HTML string for the highlights section.
+ */
 export const renderHighlights = (data: Schema.HighlightsData): string => `
     <div class="container-max flex flex-col gap-12">
         <div class="flex flex-col gap-4 text-left">
@@ -345,6 +399,11 @@ export const renderHighlights = (data: Schema.HighlightsData): string => `
     </div>
 `;
 
+/**
+ * Renders the process workflow section.
+ * @param data - Process step definitions.
+ * @returns HTML string for the process section.
+ */
 export const renderProcess = (data: Schema.ProcessData): string => `
     <div class="container-max flex flex-col gap-12">
         <div class="flex flex-col gap-2 text-left">
@@ -369,6 +428,11 @@ export const renderProcess = (data: Schema.ProcessData): string => `
     </div>
 `;
 
+/**
+ * Renders the navigation bar for the current page.
+ * @param data - Navigation links and call-to-action buttons.
+ * @returns HTML string for the navigation section.
+ */
 export const renderNav = (data: Schema.NavData): string => `
     <nav class="w-full bg-black text-white flex items-center justify-between px-8 py-4 sticky top-0 z-50">
         <a href="/" class="shrink-0 hover:scale-110 cursor-pointer"><img src="/src/assets/cbeens_logo_h.svg" alt="Logo" class="h-8 -ml-4" /></a>
@@ -385,14 +449,18 @@ export const renderNav = (data: Schema.NavData): string => `
             <div class="flex flex-col p-8 gap-2">
                 ${data.links.map((l) => `<a href="${l.url}" class="text-xl font-heading font-bold p-4 text-black border-b border-black/10 hover:text-brand-primary hover:bg-brand-primary/5 transition-colors">${l.label}</a>`).join("")}
                 <div class="flex flex-col gap-4 mt-8 md:hidden">
-                    <a href="tel:+15120000000" class="btn-primary flex items-center justify-center gap-3 text-white"><i data-lucide="phone"></i> Call Now</a>
-                    <a href="mailto:info@cbeens.dev" class="btn-secondary flex items-center justify-center gap-3"><i data-lucide="mail"></i> Email Us</a>
+                    <a href="mailto:${data.contacts.email}" class="btn-primary flex items-center justify-center gap-3"><i data-lucide="mail"></i> Email Us</a>
                 </div>
             </div>
         </div>
     </nav>
 `;
 
+/**
+ * Renders the global footer section.
+ * @param data - Footer links, social icons, and legal items.
+ * @returns HTML string for the footer section.
+ */
 export const renderFooter = (data: Schema.FooterData): string => {
 	const currentYear = new Date().getFullYear();
 	return `
@@ -428,6 +496,10 @@ export const renderFooter = (data: Schema.FooterData): string => {
     `;
 };
 
+/**
+ * Renders a simple 404 error page.
+ * @returns HTML string for the not-found page.
+ */
 export const renderErrorPage = (): string => `
     <section class="flex flex-col items-center justify-center flex-1 min-h-[70vh]">
         <div class="text-center">
@@ -440,6 +512,10 @@ export const renderErrorPage = (): string => `
     </section>
 `;
 
+/**
+ * Renders the chat launcher and chat window markup.
+ * @returns HTML string for the chat UI.
+ */
 export const renderChat = (): string => `
     <button id="chat-trigger" class="btn-icon-primary fixed bottom-24 right-8 z-50 shadow-2xl transition-transform active:scale-95">
         <i data-lucide="message-square" class="w-6 h-6"></i>
@@ -474,48 +550,3 @@ export const renderChat = (): string => `
         </form>
     </div>
 `;
-
-export const renderRichText = (html: string): string => {
-	const content = typeof html === "string" ? html : (html as any).html;
-
-	// Create a unique ID so we can target this specific instance
-	const instanceId = `cms-${Math.random().toString(36).substr(2, 9)}`;
-
-	return `
-        <section class="py-20 px-8 bg-white overflow-hidden">
-            <div class="container-max max-w-4xl mx-auto">
-                <div id="${instanceId}" class="rich-text-shadow-host"></div>
-                
-                <script>
-                    (function() {
-                        const host = document.getElementById('${instanceId}');
-                        if (!host || host.shadowRoot) return;
-                        
-                        const shadow = host.attachShadow({mode: 'open'});
-                        const container = document.createElement('div');
-                        
-                        // Force basic styles inside the shadow wall
-                        container.style.color = '#1a1a1a';
-                        container.style.fontFamily = 'Arial, sans-serif';
-                        container.style.lineHeight = '1.6';
-                        
-                        // Inject the HTML and a localized style override
-                        container.innerHTML = \`
-                            <style>
-                                a { color: #3030F1 !important; text-decoration: underline; }
-                                [data-custom-class='body'], [data-custom-class='body'] * { 
-                                    color: #1a1a1a !important; 
-                                    background: transparent !important; 
-                                }
-                                h1, h2, h3 { color: #000 !important; margin-top: 1.5rem; }
-                            </style>
-                            ${content.replace(/`/g, "\\`")}
-                        \`;
-                        
-                        shadow.appendChild(container);
-                    })();
-                </script>
-            </div>
-        </section>
-    `;
-};

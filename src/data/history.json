@@ -1,21 +1,16 @@
 {
-	"title": "Our History",
-	"subtitle": "Established 2026 // Austin, TX",
+	"title": "History",
+	"subtitle": "Est. 2026 // Austin, TX",
 	"timeline": [
 		{
-			"date": "2021-2025",
-			"heading": "The Foundational Years",
-			"body": "Founded by Christian Beener, a full-stack developer with a B.S. in Computer Information Systems from the University of Houston. After years in the software industry, the goal became clear: strip away the bloat of modern web development and return to high-performance, purpose-built engineering."
-		},
-		{
-			"date": "MAR 2026",
-			"heading": "The Launch of cbeens.dev",
-			"body": "We launched cbeens.dev with a singular mission—to provide 'Sovereign Tech' to local businesses. We don't just build websites; we build 'Lamborghinis' for the web—lightning-fast, locally grounded, and built to perform."
+			"date": "OCT 25 - APR 26",
+			"heading": "Building cbeens.dev",
+			"body": "After several years working in the software industry, for both startups and large enterprises, I decided to take the leap and start my own company. I spent months building the cbeens.dev brand, digital infrastructure, and website framework; officially launching in April 2026."
 		},
 		{
 			"date": "TODAY",
-			"heading": "The Austin Standard",
-			"body": "We continue to build our brand and product catalog, proving that high-end software doesn't have to be out of reach for the small businesses that keep Austin weird and thriving."
+			"heading": "Continuing to Build",
+			"body": "I continue to build and improve the cbeens.dev platform, proving that high-end software doesn't have to be out of reach for small businesses or solopreneurs."
 		}
 	]
 }

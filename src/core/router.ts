@@ -117,6 +117,9 @@ export async function router(): Promise<void> {
 	document.dispatchEvent(new CustomEvent("page-loaded"));
 }
 
+/**
+ * Sets up SPA router event listeners and triggers the initial route render.
+ */
 export async function initRouter(): Promise<void> {
 	window.addEventListener("popstate", router);
 	document.addEventListener("click", (e) => {

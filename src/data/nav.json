@@ -10,5 +10,9 @@
 			"url": "mailto:info@cbeens.dev",
 			"class": "btn-primary-icon"
 		}
-	]
+	],
+	"contacts": {
+		"email": "info@cbeens.dev",
+		"phone": ""
+	}
 }

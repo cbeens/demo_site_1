@@ -1,14 +1,14 @@
 {
-	"bg_image": "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=60&w=1920&fm=webp",
-	"title_top": "This is a",
-	"title_highlight": "Lightning Fast",
-	"title_bottom": "Website.",
-	"badge_text": "Get yours today!",
-	"primary_cta": {
+	"bgImage": "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=60&w=1920&fm=webp",
+	"titleTop": "This is a",
+	"titleHighlight": "Lightning Fast",
+	"titleBottom": "Website.",
+	"badgeText": "Get yours today!",
+	"primaryCta": {
 		"text": "EMAIL US",
 		"url": "mailto:info@cbeens.dev"
 	},
-	"secondary_cta": {
+	"secondaryCta": {
 		"text": "CALL NOW",
 		"url": "tel:+15120000000"
 	}

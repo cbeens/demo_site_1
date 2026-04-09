@@ -1,10 +1,15 @@
 /**
- * A reusable, Type-Safe form handler.
+ * A reusable, type-safe form handler for contact submission.
+ * Handles validation, payload formatting, and POST requests.
  */
 export class FormHandler {
 	private formElement: HTMLFormElement;
 	private endpoint: string;
 
+	/**
+	 * @param formId - The DOM ID of the form to manage.
+	 * @param endpoint - The backend URL to submit form payloads.
+	 */
 	constructor(formId: string, endpoint: string) {
 		this.formElement = document.getElementById(formId) as HTMLFormElement;
 		this.endpoint = endpoint;
@@ -92,6 +97,11 @@ export class FormHandler {
 	}
 }
 
+/**
+ * Formats a string into a US-style phone number as the user types.
+ * @param value - The raw phone input value.
+ * @returns The formatted phone number.
+ */
 const formatPhoneNumber = (value: string) => {
 	if (!value) return value;
 	const phoneNumber = value.replace(/[^\d]/g, "");
