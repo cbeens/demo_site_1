@@ -1,6 +1,6 @@
 {
 	"sectionTitle": "Meet the Founder",
-	"headshot": "./src/assets/headshot_glasses_square.webp",
+	"headshot": "./assets/headshot_glasses_square.webp",
 	"location": "Austin, TX",
 	"socials": [
 		{ "platform": "github", "url": "https://github.com/cbeens" },

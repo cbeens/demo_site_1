@@ -1,5 +1,5 @@
 /**
- * cbeens.dev SPA Router - Restored & Optimized
+ * cbeens.dev SPA Router - Parallel Optimized
  */
 import fm from "front-matter";
 import { loadComponent } from "./componentLoader";
@@ -8,21 +8,21 @@ import { stitchPage } from "./stitcher";
 import { renderNav, renderFooter, renderErrorPage } from "./factory";
 
 const routes: { [key: string]: string } = {
-	"/": "./src/pages/home/home.html",
-	"/index.html": "./src/pages/home/home.html",
-	"/about": "./src/pages/about/about.html",
-	"/services": "./src/pages/services/services.html",
+	"/": "/pages/home/home.html",
+	"/index.html": "/pages/home/home.html",
+	"/about": "/pages/about/about.html",
+	"/services": "/pages/services/services.html",
 };
 
 const mdMap: { [key: string]: string } = {
-	"/": "/src/pages/home/home.md",
-	"/index.html": "/src/pages/home/home.md",
-	"/about": "/src/pages/about/about.md",
-	"/services": "/src/pages/services/services.md",
+	"/": "/pages/home/home.md",
+	"/index.html": "/pages/home/home.md",
+	"/about": "/pages/about/about.md",
+	"/services": "/pages/services/services.md",
 };
 
 const fetchFileData = async (path: string) => {
-	const response = await fetch(`/src/data/${path}`);
+	const response = await fetch(`/data/${path}`);
 	if (!response.ok) throw new Error(`Failed to fetch data: ${path}`);
 	return await response.json();
 };
@@ -31,21 +31,7 @@ export async function router(): Promise<void> {
 	const path: string = window.location.pathname;
 	const route: string = routes[path];
 
-	// 1. GLOBAL SHELL INJECTION (NAV/FOOTER)
-	// We do this first so the site frame is never broken
-	const navShell = document.getElementById("nav");
-	const footerShell = document.getElementById("footer");
-
-	if (navShell && navShell.children.length === 0) {
-		const navData = await fetchFileData("nav.json");
-		navShell.innerHTML = renderNav(navData);
-	}
-	if (footerShell && footerShell.children.length === 0) {
-		const footerData = await fetchFileData("footer.json");
-		footerShell.innerHTML = renderFooter(footerData);
-	}
-
-	// 2. 404 HANDLING
+	// 1. 404 EARLY EXIT
 	if (!route) {
 		const appShell = document.getElementById("app");
 		if (appShell) appShell.innerHTML = renderErrorPage();
@@ -54,22 +40,38 @@ export async function router(): Promise<void> {
 		return;
 	}
 
-	// 3. LOAD PAGE COMPONENTS
+	const navShell = document.getElementById("nav");
+	const footerShell = document.getElementById("footer");
+	const mdPath = mdMap[path] || mdMap["/"];
+
 	try {
-		// First, load the base HTML layout for the route
-		await loadComponent("app", route);
+		// 2. PARALLEL FETCHING (The "Sovereign" Speed Boost)
+		// Fire all global and initial page requests simultaneously
+		const [navData, footerData, layoutHtml, mdText] = await Promise.all([
+			navShell && navShell.children.length === 0
+				? fetchFileData("nav.json")
+				: Promise.resolve(null),
+			footerShell && footerShell.children.length === 0
+				? fetchFileData("footer.json")
+				: Promise.resolve(null),
+			fetch(route).then((res) => res.text()),
+			fetch(mdPath).then((res) => res.text()),
+		]);
 
-		// Fetch the corresponding Markdown for data stitching
-		const mdPath = mdMap[path] || mdMap["/"];
-		const res = await fetch(mdPath);
-		const text = await res.text();
-		const { attributes } = fm<any>(text);
+		// 3. IMMEDIATE SHELL INJECTION
+		if (navData && navShell) navShell.innerHTML = renderNav(navData);
+		if (footerData && footerShell)
+			footerShell.innerHTML = renderFooter(footerData);
 
-		// Update Title
+		// Load the base layout into the app shell
+		await loadComponent("app", layoutHtml, false);
+
+		// 4. COMPONENT STITCHING
+		const { attributes } = fm<any>(mdText);
 		document.title = attributes.title || "cbeens.dev";
 
-		// Stitch components into the shell
 		if (attributes.components && Array.isArray(attributes.components)) {
+			// Stitch components in parallel as well
 			const componentTasks = attributes.components.map(
 				async (comp: any) => {
 					const componentHtml = await stitchPage(comp, fetchFileData);
@@ -82,12 +84,9 @@ export async function router(): Promise<void> {
 		console.error(`Sovereign Engine Error (${path}):`, error);
 	}
 
-	// 4. POST-RENDER INITIALIZATION
-	// Mapbox
+	// 5. POST-RENDER INITIALIZATION
 	const token = import.meta.env.VITE_MAPBOX_TOKEN;
 	if (document.getElementById("map")) initializeMap(token);
-
-	// Lucide Icons
 	if (window.lucide) window.lucide.createIcons();
 
 	// Intersection Observer for Animations
@@ -117,9 +116,6 @@ export async function router(): Promise<void> {
 	document.dispatchEvent(new CustomEvent("page-loaded"));
 }
 
-/**
- * Sets up SPA router event listeners and triggers the initial route render.
- */
 export async function initRouter(): Promise<void> {
 	window.addEventListener("popstate", router);
 	document.addEventListener("click", (e) => {
@@ -129,7 +125,7 @@ export async function initRouter(): Promise<void> {
 			anchor?.getAttribute("href") === "/privacy.html" ||
 			anchor?.getAttribute("href") === "/terms.html"
 		) {
-			return; // Let the browser handle this link normally
+			return;
 		}
 
 		if (anchor && anchor.href.startsWith(window.location.origin)) {

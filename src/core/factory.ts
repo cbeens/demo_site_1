@@ -435,7 +435,7 @@ export const renderProcess = (data: Schema.ProcessData): string => `
  */
 export const renderNav = (data: Schema.NavData): string => `
     <nav class="w-full bg-black text-white flex items-center justify-between px-8 py-4 sticky top-0 z-50">
-        <a href="/" class="shrink-0 hover:scale-110 cursor-pointer"><img src="/src/assets/cbeens_logo_h.svg" alt="Logo" class="h-8 -ml-4" /></a>
+        <a href="/" class="shrink-0 hover:scale-110 cursor-pointer"><img src="/assets/cbeens_logo_h.svg" alt="Logo" class="h-8 -ml-4" /></a>
         <div class="flex items-center gap-6">
             <div class="hidden lg:flex gap-8 border-r border-white/20 pr-6">
                 ${data.links.map((l) => `<a href="${l.url}" class="font-heading font-bold text-white hover:text-brand-secondary transition-colors">${l.label}</a>`).join("")}
@@ -473,7 +473,7 @@ export const renderFooter = (data: Schema.FooterData): string => {
                         </a>
                     </div>
                     <div class="flex flex-col items-center gap-3 order-1 md:order-1 text-center">
-                        <img src="/src/assets/cbeens_logo_h.svg" alt="Logo" class="h-6 brightness-0 invert" />
+                        <img src="/assets/cbeens_logo_h.svg" alt="Logo" class="h-6 brightness-0 invert" />
                         <p class="text-[10px] text-gray-500 tracking-[0.2em] uppercase">&copy; ${currentYear} CBEENS.DEV, ALL RIGHTS RESERVED</p>
                     </div>
                     <div class="flex justify-center md:justify-end items-center gap-4 order-2 md:order-3">
