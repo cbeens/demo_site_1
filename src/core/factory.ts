@@ -182,8 +182,8 @@ export const renderContact = (data: Schema.ContactData): string => `
                                 <option value="web development">Web Development</option>
                                 <option value="tech audits">Tech Audits and Management</option>
                                 <option value="project discovery">Project Discovery</option>
-                                <option value="custom">Custom Solutions</option>
-                                <option value="general">General Consulting / Other</option>
+                                <option value="AI orchestration">AI Orchestration</option>
+                                <option value="general inquiries">General Consulting / Other</option>
                             </select>
                         </div>
                         <div class="flex flex-col gap-1 md:col-span-2">
