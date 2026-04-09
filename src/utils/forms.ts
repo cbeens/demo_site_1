@@ -1,19 +1,24 @@
 /**
  * A reusable, type-safe form handler for contact submission.
- * Handles validation, payload formatting, and POST requests.
+ * Handles validation, payload formatting, POST requests, and UI states.
  */
 export class FormHandler {
 	private formElement: HTMLFormElement;
 	private endpoint: string;
+	private messageElement: HTMLParagraphElement;
 
-	/**
-	 * @param formId - The DOM ID of the form to manage.
-	 * @param endpoint - The backend URL to submit form payloads.
-	 */
 	constructor(formId: string, endpoint: string) {
 		this.formElement = document.getElementById(formId) as HTMLFormElement;
 		this.endpoint = endpoint;
-		this.init();
+
+		this.messageElement = document.createElement("p");
+		this.messageElement.className =
+			"text-[10px] uppercase tracking-widest text-center hidden";
+
+		if (this.formElement) {
+			this.formElement.appendChild(this.messageElement);
+			this.init();
+		}
 	}
 
 	private init() {
@@ -27,10 +32,11 @@ export class FormHandler {
 		const phoneInput = this.formElement.querySelector(
 			'input[name="phone"]',
 		) as HTMLInputElement;
+
 		if (phoneInput) {
 			phoneInput.addEventListener("input", (e) => {
 				const target = e.target as HTMLInputElement;
-				target.value = formatPhoneNumber(target.value);
+				target.value = this.formatPhoneNumber(target.value);
 			});
 		}
 	}
@@ -38,11 +44,10 @@ export class FormHandler {
 	private async handleSubmit() {
 		const formData = new FormData(this.formElement);
 		const payload = Object.fromEntries(formData.entries());
-
-		// Priority: 1. Attribute on HTML, 2. Env Var, 3. Hardcoded Default
 		const clientId = import.meta.env.VITE_CLIENT_ID;
 
 		this.setLoading(true);
+		this.hideMessage();
 
 		try {
 			const response = await fetch(this.endpoint, {
@@ -59,19 +64,22 @@ export class FormHandler {
 			});
 
 			if (response.ok) {
+				this.setSuccess();
 				this.formElement.reset();
-				// Optional: Trigger a custom event for success UI
-				this.formElement.dispatchEvent(new CustomEvent("form-success"));
 			} else {
-				throw new Error(`Server returned ${response.status}`);
+				throw new Error();
 			}
 		} catch (error) {
-			// TODO: Replace alert with a custom modal or inline message for better UX
-			alert(
-				"Transmission failed. Please try again or email info@cbeens.dev",
-			);
+			this.setError("TRANSMISSION FAILED. PLEASE TRY AGAIN.");
 		} finally {
-			this.setLoading(false);
+			const btn = this.formElement.querySelector(
+				'button[type="submit"]',
+			) as HTMLButtonElement;
+
+			// Only unlock if we didn't succeed
+			if (btn && btn.textContent !== "MESSAGE SENT") {
+				this.setLoading(false);
+			}
 		}
 	}
 
@@ -79,28 +87,52 @@ export class FormHandler {
 		const btn = this.formElement.querySelector(
 			'button[type="submit"]',
 		) as HTMLButtonElement;
-		if (btn) {
-			btn.disabled = isLoading;
-			btn.textContent = isLoading ? "TRANSMITTING..." : "SUBMIT";
-			isLoading
-				? btn.classList.add("opacity-50", "cursor-not-allowed")
-				: btn.classList.remove("opacity-50", "cursor-not-allowed");
+		if (!btn) return;
+
+		btn.disabled = isLoading;
+		btn.textContent = isLoading ? "SENDING..." : "SUBMIT";
+
+		if (isLoading) {
+			btn.classList.add("opacity-50", "cursor-not-allowed");
+		} else {
+			btn.classList.remove("opacity-50", "cursor-not-allowed");
 		}
 	}
-}
 
-/**
- * Formats a string into a US-style phone number as the user types.
- * @param value - The raw phone input value.
- * @returns The formatted phone number.
- */
-const formatPhoneNumber = (value: string) => {
-	if (!value) return value;
-	const phoneNumber = value.replace(/[^\d]/g, "");
-	const phoneNumberLength = phoneNumber.length;
-	if (phoneNumberLength < 4) return phoneNumber;
-	if (phoneNumberLength < 7) {
-		return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+	private setSuccess() {
+		const btn = this.formElement.querySelector(
+			'button[type="submit"]',
+		) as HTMLButtonElement;
+		if (!btn) return;
+
+		btn.textContent = "MESSAGE SENT";
+		btn.disabled = true; // Permanent disable for this session
+
+		// Transition to brand-secondary (Make sure these are safelisted!)
+		btn.classList.remove("border-brand-primary", "text-brand-primary");
+		btn.classList.add("bg-brand-secondary", "border-brand-secondary");
 	}
-	return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
-};
+
+	private setError(msg: string) {
+		this.messageElement.textContent = msg;
+		this.messageElement.classList.remove("hidden");
+		this.messageElement.classList.add("text-red-500");
+		this.setLoading(false);
+	}
+
+	private hideMessage() {
+		this.messageElement.classList.add("hidden");
+		this.messageElement.classList.remove("text-red-500");
+	}
+
+	private formatPhoneNumber(value: string): string {
+		if (!value) return value;
+		const phoneNumber = value.replace(/[^\d]/g, "");
+		const length = phoneNumber.length;
+		if (length < 4) return phoneNumber;
+		if (length < 7) {
+			return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+		}
+		return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+	}
+}

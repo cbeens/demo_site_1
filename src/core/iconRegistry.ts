@@ -4,7 +4,7 @@
  */
 
 // Vite-specific: Imports all SVGs in the folder as raw strings
-const rawIcons = import.meta.glob("../assets/icons/*.svg", {
+const rawIcons = import.meta.glob("../icons/*.svg", {
 	as: "raw",
 	eager: true,
 });
