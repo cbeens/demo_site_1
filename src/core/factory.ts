@@ -190,7 +190,7 @@ export const renderContact = (data: Schema.ContactData): string => `
                 </div>
             </div>
             <div class="p-8 md:p-12 lg:p-16 bg-gray-50 flex flex-col justify-center text-black">
-                <form id="contact-form" data-client-id="${data.clientId}" class="flex flex-col gap-6">
+                <form id="contact-form" class="flex flex-col gap-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
                         <div class="flex flex-col gap-1">
                             <label class="font-bold text-[10px] uppercase tracking-widest text-gray-400">Name</label>

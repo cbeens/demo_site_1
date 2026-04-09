@@ -40,18 +40,11 @@ export class FormHandler {
 		const payload = Object.fromEntries(formData.entries());
 
 		// Priority: 1. Attribute on HTML, 2. Env Var, 3. Hardcoded Default
-		const clientId =
-			this.formElement.getAttribute("data-client-id") ||
-			import.meta.env.VITE_CLIENT_ID ||
-			"cbeens-dev";
+		const clientId = import.meta.env.VITE_CLIENT_ID;
 
 		this.setLoading(true);
 
 		try {
-			console.log(
-				`📡 Transmitting Lead for [${clientId}] to ${this.endpoint}...`,
-			);
-
 			const response = await fetch(this.endpoint, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
@@ -66,7 +59,6 @@ export class FormHandler {
 			});
 
 			if (response.ok) {
-				console.log("✅ Transmission Successful");
 				this.formElement.reset();
 				// Optional: Trigger a custom event for success UI
 				this.formElement.dispatchEvent(new CustomEvent("form-success"));
@@ -74,7 +66,7 @@ export class FormHandler {
 				throw new Error(`Server returned ${response.status}`);
 			}
 		} catch (error) {
-			console.error("❌ Transmission Failed:", error);
+			// TODO: Replace alert with a custom modal or inline message for better UX
 			alert(
 				"Transmission failed. Please try again or email info@cbeens.dev",
 			);
