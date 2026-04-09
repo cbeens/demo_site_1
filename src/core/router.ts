@@ -86,7 +86,7 @@ export async function router(): Promise<void> {
 
 	// 5. POST-RENDER INITIALIZATION
 	const token = import.meta.env.VITE_MAPBOX_TOKEN;
-	if (document.getElementById("map")) initializeMap(token);
+	if (document.getElementById("map") && token) initializeMap(token);
 	if (window.lucide) window.lucide.createIcons();
 
 	// Intersection Observer for Animations
